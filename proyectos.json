@@ -1,0 +1,28 @@
+{
+	"proyectos":[
+		{ 
+			"id": 0,
+			"nombre": "WIFI",
+			"descripción": "poner wifi en xxxx",
+			"etapa": 0, //definir las etapas del flujo con números
+			"responsable": "xx", // o la id del usuario
+			"promotor": "xx", // o la id del usuario
+			"recursos": 2 , //definir exactamete cómo  por ejemplo un array o {"humanos": 10, ...}
+
+
+		},
+			{ 
+			"id": 1,
+			"nombre": "WIFI2",
+			"descripción": "poner wifi en xxxx",
+			"etapa": 0, //definir las etapas del flujo con números
+			"responsable": "xx", // o la id del usuario
+			"promotor": "xx", // o la id del usuario
+			"recursos": 2 , //definir exactamete cómo  por ejemplo un array o {"humanos": 10, ...}
+
+
+		}
+
+
+	]
+}
