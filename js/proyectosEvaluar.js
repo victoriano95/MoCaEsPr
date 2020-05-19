@@ -56,6 +56,19 @@ function accept (numero) {
     sessionStorage.setItem("proyectoEnCurso" + numeroPeticion +  "finProyecto", sessionStorage.getItem("peticionProy" + numero + "finProyecto"));
     sessionStorage.setItem("proyectoEnCurso" + numeroPeticion + "nombreCreador", sessionStorage.getItem("peticionProy" + numero + "nombreCreador"));
 
+    // actualizar estado general
+    var presupuestoAntiguo = sessionStorage.getItem("conf" + 0 +  "importeConProyectos");
+    presupuestoAntiguo -= sessionStorage.getItem("proyectoEnCurso" + numeroPeticion +  "coste");
+    sessionStorage.setItem("conf" + 0 +  "importeConProyectos", presupuestoAntiguo);
+
+    var numeroProyectos = sessionStorage.getItem("confNumeroProyectos");
+    if (numeroProyectos == null) {
+    	numeroProyectos = 1;
+    } else {
+    	numeroProyectos = Integer.parseInt(numeroProyectos)+ 1;
+    	sessionStorage.setItem(confNumeroProyectos, numeroProyectos);
+    }
+
 	decline(numero);  	
 }
 

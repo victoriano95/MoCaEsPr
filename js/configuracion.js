@@ -22,6 +22,8 @@ function crearConfiguracion() {
         sessionStorage.setItem("conf" + numerConfiguraciones +  "publicacion", document.getElementById("publicacionID").value);
         sessionStorage.setItem("conf" + numerConfiguraciones +  "documentos", document.getElementById("docID").value);
 
+        sessionStorage.setItem("conf" + numerConfiguraciones +  "importeConProyectos", document.getElementById("importeID").value);
+
         location.replace("index.html");
     } else {
         alert("Necesita completar todos los campos para crear la configuración");

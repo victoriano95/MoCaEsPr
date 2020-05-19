@@ -30,9 +30,9 @@
                   <li class="nav-item" role="presentation" id="proyectosOptionID"><a class="nav-link" href="proyectos.html"><i class="fas fa-table"></i><span>Proyectos</span></a></li>
                   <li class="nav-item" role="presentation" id="configOptionID"><a class="nav-link" href="configuracion.html"><i class="fas fa-window-maximize"></i><span>Configuración</span></a></li>
                   <li class="nav-item" role="presentation" id="perfilOptionID"><a class="nav-link" href="login.html"><i class="fas fa-user"></i><span>Perfil</span></a></li>
-                  <li class="nav-item" role="presentation" ><a class="nav-link" href="peticionProyecto.html"><i class="fas fa-ad"></i><span>Petición proyecto</span></a></li>
+                  <li class="nav-item" role="presentation" id="peticionProyectoID"><a class="nav-link" href="peticionProyecto.html"><i class="fas fa-ad"></i><span>Petición proyecto</span></a></li>
                   <!-- para el class fa: https://www.w3schools.com/icons/icons_reference.asp -->
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="proyectosEvaluar.html"><i class="fa fa-list-alt"></i><span>Evaluar proyecto</span></a></li>
+                  <li class="nav-item" role="presentation" id="evaluarProyectoID"><a class="nav-link" href="proyectosEvaluar.html"><i class="fa fa-list-alt"></i><span>Evaluar proyecto</span></a></li>
                   <li class="nav-item" role="presentation"></li>
                </ul>
                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -99,7 +99,7 @@
                               <div class="row align-items-center no-gutters">
                                  <div class="col mr-2">
                                     <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Presupuesto total</span></div>
-                                    <div class="text-dark font-weight-bold h5 mb-0"><span>$40,000</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0"><span  id="presupuestoTotalID"></span></div>
                                  </div>
                                  <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
                               </div>
@@ -111,8 +111,9 @@
                            <div class="card-body">
                               <div class="row align-items-center no-gutters">
                                  <div class="col mr-2">
+                                    <!-- El restante sería tipo cuando acabasen los poryectos -->
                                     <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>presupuesto restante</span></div>
-                                    <div class="text-dark font-weight-bold h5 mb-0"><span>$215,000</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0"><span  id="presupuestoRestanteID"></span></div>
                                  </div>
                                  <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
                               </div>
@@ -127,7 +128,7 @@
                                     <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Tasks</span></div>
                                     <div class="row no-gutters align-items-center">
                                        <div class="col-auto">
-                                          <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>50%</span></div>
+                                          <div class="text-dark font-weight-bold h5 mb-0 mr-3" id="porcentajeTareasID"><span>50%</span></div>
                                        </div>
                                        <div class="col">
                                           <div class="progress progress-sm">
@@ -147,7 +148,7 @@
                               <div class="row align-items-center no-gutters">
                                  <div class="col mr-2">
                                     <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>proyectos</span></div>
-                                    <div class="text-dark font-weight-bold h5 mb-0"><span>18</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0" ><span id="numeroProyectosID">18</span></div>
                                  </div>
                                  <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                               </div>

@@ -8,8 +8,9 @@ window.onload = function() {
 
   	if (usuario == "cio") {
     	document.getElementById('configOptionID').style.display = 'none';
+    	document.getElementById('evaluarProyectoID').style.display = 'none';
   	} else if (usuario == "director") {
-    	document.getElementById('dashboardOptionID').style.display = 'none';
+    	document.getElementById('peticionProyectoID').style.display = 'none';
   	} else if (usuario == "lo que sea") {
 
   	}  
@@ -32,21 +33,42 @@ window.onload = function() {
 var numeroMensajesNuevos;
 function mensajes () {	
 	numeroMensajesNuevos = 1;  // calcularlos
+	var contador = 0;
 
-	document.getElementById("notificationNumberID").innerHTML = numeroMensajesNuevos;
+	var listaMensajes = sessionStorage.getItem("mensaje" + sessionStorage.getItem("usuarioName"));
+	if (listaMensajes != null) {
 
-	// hacer esto para cada mensaje
-	$("#mensajesID").append("<a class=\"d-flex align-items-center dropdown-item\" href=\"#\">" +
+		while  (listaMensajes.length != 0) {
+			listaMensajes = listaMensajes.substring(1, listaMensajes.length); //{
+
+			var nombre = listaMensajes.substring(0, listaMensajes.indexOf("|"));
+			listaMensajes = listaMensajes.substring(listaMensajes.indexOf("|") + 1, listaMensajes.length);
+
+			var puesto = listaMensajes.substring(0, listaMensajes.indexOf("|"));
+			listaMensajes = listaMensajes.substring(listaMensajes.indexOf("|") + 1, listaMensajes.length);
+
+			var mensaje = listaMensajes.substring(0, listaMensajes.indexOf("}"));
+			listaMensajes = listaMensajes.substring(listaMensajes.indexOf("}") + 1, listaMensajes.length);
+
+			$("#mensajesID").append("<a class=\"d-flex align-items-center dropdown-item\" href=\"#\">" +
                                     "<div class=\"mr-3\">" +
                                        "<div class=\"bg-primary icon-circle\">" + 
                                        		"<i class=\"fas fa-file-alt text-white\"></i>" +
                                        	"</div>" +
                                     "</div>" +
                                     "<div>"+
-                                       "<span class=\"small text-gray-500\">December 12, 2019</span>"+
-                                       "<p>" + "mensaje" + "</p>" +
+                                       "<span class=\"small text-gray-500\">" + nombre + " (" + puesto + ")" + "</span>"+
+                                       "<p>" + mensaje + "</p>" +
                                    "</div>" +
                                  "</a>");
+			contador ++;
+		}
+	}
+	if (contador > 0) {
+		document.getElementById("notificationNumberID").innerHTML = contador;
+	}
+
+	sessionStorage.removeItem("mensaje" + sessionStorage.getItem("usuarioName"));
 }
 
 function mensajesLeidos () {
