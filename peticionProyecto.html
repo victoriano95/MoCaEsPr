@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
       <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-      <script src="js/configuracion.js"></script>
+      <script src="js/peticionProyectos.js"></script>
       <script src="js/general.js"></script>
    </head>
    <body id="page-top">
@@ -87,15 +87,17 @@
                      </ul>
                   </div>
                </nav>
+               <!-- Opciones para crear proyectos -->
                <div style="width: 50%; margin: 0 auto;">
                   <div style="float:left" class="container-fluid">
-                     <small class="form-text text-muted">Importe total de la cartera (€):<input type="text" id="importeID"></small><small class="form-text text-muted">Recursos humanos (horas/año):<input type="text" id="rrhhID"></small><small class="form-text text-muted">Criterios de evaluación de la cartera:<input type="text" id="criteriosID"></small>
-                     <small class="form-text text-muted">Inicio propuestas:&nbsp;<input type="date" id="inPropID"></small><small class="form-text text-muted">Fin propuestas:&nbsp;<input type="date" id="finPropID"></small><small class="form-text text-muted">Inicio periodo de evaluación:&nbsp;<input type="date" id="inEvID"></small>
-                        <small
-                           class="form-text text-muted" data-toggle="tooltip" data-bs-tooltip="" title="jj">Fin periodo de evaluación :&nbsp;<input type="date" id="finEvID"></small><small class="form-text text-muted">Publucación de resultados :&nbsp;<input type="date" id="publicacionID"></small>                    
-                     <small class="form-text text-muted">Documentos :&nbsp;<input type="file" id="docID"></small>
+                     <small class="form-text text-muted">Nombre del proyecto:<input type="text" id="nombreProyID"></small>
+                     <small class="form-text text-muted">Cuanto costará el proyecto (€):<input type="text" id="costeProyID"></small>
+                     <small class="form-text text-muted">Recursos humanos necearios (horas/año):<input type="text" id="rrhhProyID"></small>
+                     <small class="form-text text-muted">Que se pretende conseguir:<input type="text" id="conseguirProyID"></small>
+                     <small class="form-text text-muted">Inicio proyecto:&nbsp;<input type="date" id="inProyID"></small>
+                     <small class="form-text text-muted">Fin proyecto:&nbsp;<input type="date" id="finProyID"></small>
                      <br>
-                     <button class="btn btn-primary d-lg-flex justify-content-lg-start" type="button" onclick="crearConfiguracion()">Crear configuración</button>
+                     <button class="btn btn-primary d-lg-flex justify-content-lg-start" type="button" onclick="crearPeticion()">Crear petición</button>
                   </div>
                </div>
             </div>
