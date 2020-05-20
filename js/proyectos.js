@@ -41,20 +41,40 @@ function load() {
 function decline (numero) {
   sessionStorage.removeItem("proyectoEnCurso" + numero);
   sessionStorage.removeItem("proyectoEnCurso" + numero +  "nombre");
-  sessionStorage.removeItem("proyectoEnCurso" + numero +  "coste");
-  sessionStorage.removeItem("proyectoEnCurso" + numero +  "rrhh");
+  
   sessionStorage.removeItem("proyectoEnCurso" + numero +  "conseguir");
   sessionStorage.removeItem("proyectoEnCurso" + numero +  "inicioProyecto");
   sessionStorage.removeItem("proyectoEnCurso" + numero +  "finProyecto");
     
   sessionStorage.setItem("enProcesoBorrados" + numero, "borrado");
 
+  // numero proyectos
   var numeroProyectos = sessionStorage.getItem("confNumeroProyectos");
     if (numeroProyectos == null) {
-      numeroProyectos = 0;
+      sessionStorage.setItem("confNumeroProyectos", 1);
     } else {
-      numeroProyectos = Integer.parseInt(numeroProyectos) - 1;
-      sessionStorage.setItem(confNumeroProyectos, numeroProyectos);
+      numeroProyectos = parseInt(numeroProyectos) - 1;
+      sessionStorage.setItem("confNumeroProyectos", numeroProyectos);
+    }
+
+    // presupuesto
+    var costeActual = sessionStorage.getItem("conf" + 0 +  "importeConProyectos");
+    if (costeActual == null) {
+      sessionStorage.setItem("conf" + 0 +  "importeConProyectos", sessionStorage.getItem("proyectoEnCurso" + numero +  "rrhh"));
+    } else {
+      costeActual = parseInt(costeActual) + parseInt(sessionStorage.getItem("proyectoEnCurso" + numero +  "coste"));
+      sessionStorage.setItem("conf" + 0 +  "importeConProyectos", costeActual);
+      sessionStorage.removeItem("proyectoEnCurso" + numero +  "coste");
+    }
+
+    // rrhh
+    var numeroRRHH = sessionStorage.getItem("confNumeroRRHH");
+    if (numeroRRHH == null) {
+      sessionStorage.setItem("confNumeroRRHH", sessionStorage.getItem("proyectoEnCurso" + numero +  "rrhh"));
+    } else {
+      numeroRRHH = parseInt(numeroRRHH) - parseInt(sessionStorage.getItem("proyectoEnCurso" + numero +  "rrhh"));
+      sessionStorage.setItem("confNumeroRRHH", numeroRRHH);
+      sessionStorage.removeItem("proyectoEnCurso" + numero +  "rrhh");
     }
 
   location.replace("proyectos.html");

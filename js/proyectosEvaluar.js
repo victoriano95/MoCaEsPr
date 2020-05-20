@@ -61,12 +61,22 @@ function accept (numero) {
     presupuestoAntiguo -= sessionStorage.getItem("proyectoEnCurso" + numeroPeticion +  "coste");
     sessionStorage.setItem("conf" + 0 +  "importeConProyectos", presupuestoAntiguo);
 
+    // presupuesto
     var numeroProyectos = sessionStorage.getItem("confNumeroProyectos");
     if (numeroProyectos == null) {
-    	numeroProyectos = 1;
+    	sessionStorage.setItem("confNumeroProyectos", 1);
     } else {
-    	numeroProyectos = Integer.parseInt(numeroProyectos)+ 1;
-    	sessionStorage.setItem(confNumeroProyectos, numeroProyectos);
+    	numeroProyectos = parseInt(numeroProyectos) + 1;
+    	sessionStorage.setItem("confNumeroProyectos", numeroProyectos);
+    }
+
+    // rrhh
+    var numeroRRHH = sessionStorage.getItem("confNumeroRRHH");
+    if (numeroRRHH == null) {
+    	sessionStorage.setItem("confNumeroRRHH", sessionStorage.getItem("proyectoEnCurso" + numero +  "rrhh"));
+    } else {
+    	numeroRRHH = parseInt(numeroRRHH) + parseInt(sessionStorage.getItem("proyectoEnCurso" + numero +  "rrhh"));
+    	sessionStorage.setItem("confNumeroRRHH", numeroRRHH);
     }
 
 	decline(numero);  	
