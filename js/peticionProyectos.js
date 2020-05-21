@@ -21,6 +21,7 @@ function crearPeticion() {
         sessionStorage.setItem("peticionProy" + numeroPeticion +  "inicioProyecto", document.getElementById("inProyID").value);
         sessionStorage.setItem("peticionProy" + numeroPeticion +  "finProyecto", document.getElementById("finProyID").value);
         sessionStorage.setItem("peticionProy" + numeroPeticion +  "nombreCreador", sessionStorage.getItem("usuarioName"));
+        sessionStorage.setItem("estado" + numeroPeticion, "espera");
 
         location.replace("index.html");
     } else {

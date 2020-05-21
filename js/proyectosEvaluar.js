@@ -25,7 +25,8 @@ function load () {
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
                     "<td><a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
-                    	"<a class=\"btn btn-info btn-circle ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\"><i class=\"fas fa-times text-white\"></i></a>" +
+                    	"<a class=\"btn btn-warning btn-circle ml-1\" role=\button\" onclick=\"standBy(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-minus text-white\"></i></a>" +
+                    	"<a class=\"btn btn-danger btn-circle ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-times text-white\"></i></a>" +
                     "</td>" +
                     "<td></td>" +
                 "</tr>");
@@ -40,6 +41,7 @@ function load () {
 }
 
 function accept (numero) {
+	sessionStorage.setItem("estado" + numero, "aceptado"); 
 	var numeroPeticion = 0;
     result = sessionStorage.getItem("proyectoEnCurso" + numeroPeticion);
     while (result != null || sessionStorage.getItem("enProcesoBorrados" + numeroPeticion) != null) {
@@ -79,11 +81,25 @@ function accept (numero) {
     	sessionStorage.setItem("confNumeroRRHH", numeroRRHH);
     }
 
-	decline(numero);  	
+	sessionStorage.setItem("evaluarBorrados" + numero, "borrado");  
+
+	// Notificar que ha sido aprobado
+	// notificar al que lo publicó
+	var nombreCreadorPropuesta = sessionStorage.getItem("peticionProy" + numero + "nombreCreador");
+    var mensajeAntiguo = sessionStorage.getItem("mensaje" + nombreCreadorPropuesta);
+    if (mensajeAntiguo == null) mensajeAntiguo ="";
+    sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + 
+    "Su proyecto " + sessionStorage.getItem("peticionProy" + numero +  "nombre") + " ha sido aceptado "  + "}");	
+
+    location.replace("proyectosEvaluar.html");
 }
 
 
 function decline (numero) {
+	sessionStorage.setItem("estado" + numero, "borrado");
+	sessionStorage.setItem("paraBorrar", numero);
+	apretadoBorrar();
+	/*
 	sessionStorage.removeItem("peticionProy" + numero);
 	sessionStorage.removeItem("peticionProy" + numero +  "nombre");
     sessionStorage.removeItem("peticionProy" + numero +  "coste");
@@ -92,34 +108,31 @@ function decline (numero) {
     sessionStorage.removeItem("peticionProy" + numero +  "inicioProyecto");
     sessionStorage.removeItem("peticionProy" + numero +  "finProyecto");
     sessionStorage.removeItem("peticionProy" + numero +  "nombreCreador");
+    */
     
     sessionStorage.setItem("evaluarBorrados" + numero, "borrado");
-    location.replace("proyectosEvaluar.html");
+    //location.replace("proyectosEvaluar.html");
 }
 
-/*
-var numeroMensajesNuevos;
-function mensajes () {	
-	numeroMensajesNuevos = 5;  // calcularlos
+function motivoEliminacion(variable) {
+	sessionStorage.setItem("evaluarBorrados" + sessionStorage.getItem("paraBorrar") + "motivo", variable);
 
-	document.getElementById("notificationNumberID").innerHTML = numeroMensajesNuevos;
+	var modal = document.getElementById("myModal");
+	modal.style.display = "none";
 
-	// hacer esto para cada mensaje
-	$("#mensajesID").append("<a class=\"d-flex align-items-center dropdown-item\" href=\"#\">" +
-                                    "<div class=\"mr-3\">" +
-                                       "<div class=\"bg-primary icon-circle\">" + 
-                                       		"<i class=\"fas fa-file-alt text-white\"></i>" +
-                                       	"</div>" +
-                                    "</div>" +
-                                    "<div>"+
-                                       "<span class=\"small text-gray-500\">December 12, 2019</span>"+
-                                       "<p>" + sessionStorage.getItem("usuarioName") + "</p>" +
-                                   "</div>" +
-                                 "</a>");
+	// notificar al que lo publicó
+	var nombreCreadorPropuesta = sessionStorage.getItem("peticionProy" + sessionStorage.getItem("paraBorrar") + "nombreCreador");
+    var mensajeAntiguo = sessionStorage.getItem("mensaje" + nombreCreadorPropuesta);
+    if (mensajeAntiguo == null) mensajeAntiguo ="";
+    sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + 
+    "Su proyecto " + sessionStorage.getItem("peticionProy" + sessionStorage.getItem("paraBorrar") +  "nombre") + " ha sido borrado por " + variable +"}");
+
+	location.replace("proyectosEvaluar.html");
 }
 
-function mensajesLeidos () {
-	numeroMensajesNuevos = 0;
-	document.getElementById("notificationNumberID").innerHTML = "";
+function standBy (numero) {
+	sessionStorage.setItem("estado" + numero, "standBy");
+	sessionStorage.setItem("evaluarBorrados" + numero, "borrado");
+	location.replace("proyectosEvaluar.html");
 }
-*/
+

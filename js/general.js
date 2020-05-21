@@ -7,10 +7,16 @@ window.onload = function() {
 	$("#puestoID").append(usuario);
 
   	if (usuario == "cio") {
+
     	document.getElementById('configOptionID').style.display = 'none';
     	document.getElementById('evaluarProyectoID').style.display = 'none';
+    	document.getElementById('proyectosOptionID').style.display = 'none';
+
   	} else if (usuario == "director") {
+
     	document.getElementById('peticionProyectoID').style.display = 'none';
+    	document.getElementById('misProyectosOptionID').style.display = 'none';
+
   	} else if (usuario == "lo que sea") {
 
   	}  
