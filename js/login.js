@@ -20,6 +20,11 @@ function entrar() {
             sessionStorage.setItem("usuario", "lo que sea");
             location.replace("index.html");
 
+        } else if (nombre == "Tururu" && contraseña == "1234") { // El que pueda evaluar el éxito del proyecto
+
+            sessionStorage.setItem("usuario", "lo que sea");
+            location.replace("index.html");
+
         } else { 
             alert("Parece que no existe ese usuario con esa contraseña!");
             document.getElementById("nombreID").value = "";

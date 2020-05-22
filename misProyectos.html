@@ -89,34 +89,15 @@
                   </div>
                </nav>
                <div class="container-fluid">
-                  <h3 class="text-dark mb-4">Proyectos</h3>
-                  <div class="card shadow">
-                     <div class="card-header py-3">
-                        <p class="text-primary m-0 font-weight-bold">Lista de proyectos</p>
-                     </div>
+                  <h3 class="text-dark mb-4">Mis proyectos</h3>
+                  <div class="card shadow">                     
                      <div class="card-body">
                         <div class="row">
-                           <div class="col-md-6 text-nowrap">
-                              <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                 <label>
-                                    Show&nbsp;
-                                    <select class="form-control form-control-sm custom-select custom-select-sm">
-                                       <option value="10" selected="">10</option>
-                                       <option value="25">25</option>
-                                       <option value="50">50</option>
-                                       <option value="100">100</option>
-                                    </select>
-                                    &nbsp;
-                                 </label>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                           </div>
+                           <div  id="dataTable_filter"><h3 id="nombreContenidoTablaID">Lista de mis proyectos</h3></div>
                         </div>
                         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                           <table class="table dataTable my-0" id="dataTable">
-                              <thead>
+                           <table class="table dataTable my-0">
+                              <thead id="tablaID">
                                  <tr>
                                     <th>Nombre del proyecto</th>
                                     <th>Presupuesto</th>
@@ -124,6 +105,7 @@
                                     <th>Descripción</th>
                                     <th>Inicio de fin</th>
                                     <th>Fecha de fin</th>
+                                    <th>Ejecución</th>
                                     <th>Estado</th>
                                  </tr>
                               </thead>
