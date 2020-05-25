@@ -7,14 +7,21 @@ window.addEventListener("load",function(event) {
 
 
 function load() {
-  var numeroProyectos = 0;
-  proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-  while (sessionStorage.getItem("enProcesoBorrados" + numeroProyectos) != null) { // se ha borrado
-    numeroProyectos ++;
-    var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-  }
-  while (proyecto != null) {
-    $("#bodyProyectsAcceptadosID").append("<tr> "+
+  if (sessionStorage.getItem("aprobado") != "si") {
+    $("#dondeCuelgaID").append("<tr>" +
+                    "<td><h1>No hay proyectos aprobados de momento</h1></td>" +
+                "</tr>");
+      const myNode = document.getElementById("dataTable");
+      myNode.innerHTML = '';
+  } else {
+      var numeroProyectos = 0;
+      proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
+      while (sessionStorage.getItem("enProcesoBorrados" + numeroProyectos) != null) { // se ha borrado
+         numeroProyectos ++;
+         var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
+      }
+      while (proyecto != null) {
+         $("#bodyProyectsAcceptadosID").append("<tr> "+
                     "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "nombre") + "</td>" +
                     "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "coste") + "</td>" +
                     "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "rrhh") + "</td>" +
@@ -29,13 +36,14 @@ function load() {
                     "<td></td>" +
                 "</tr>");
     
-    numeroProyectos ++;
-    var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-    while (sessionStorage.getItem("enProcesoBorrados" + numeroProyectos) != null) { // se ha borrado
-      numeroProyectos ++;
-      var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-    }
-  }
+         numeroProyectos ++;
+         var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
+         while (sessionStorage.getItem("enProcesoBorrados" + numeroProyectos) != null) { // se ha borrado
+            numeroProyectos ++;
+            var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
+         }
+      }
+   }
 }
 
 function decline (numero) {
@@ -79,6 +87,7 @@ function decline (numero) {
 
   location.replace("proyectos.html");
 }
+
 
 
 function message (numero) {

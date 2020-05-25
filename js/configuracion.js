@@ -1,4 +1,9 @@
 
+window.addEventListener("load",function(event) {
+    existeConfiguracion ();
+}, false);
+
+
 var numerConfiguraciones = 0;
 
 function crearConfiguracion() {
@@ -27,6 +32,21 @@ function crearConfiguracion() {
         location.replace("index.html");
     } else {
         alert("Necesita completar todos los campos para crear la configuración");
+    }
+}
+
+
+function existeConfiguracion () {
+    if (sessionStorage.getItem("conf0") != null) {
+        $("#propuestaActual").append(
+            "<h2> Propuesta actual:  </h2>" +
+            "<div>Importe " + sessionStorage.getItem("conf" + 0 +  "importe") + "</div>" +
+            "<div>Recursos humanos " + sessionStorage.getItem("conf" + 0 +  "rrhh") + "</div>" +
+            "<div>Criterios " + sessionStorage.getItem("conf" + 0  +  "criteriosEvaluacion") + "</div>" + 
+            "<div>Período de tiempo " + sessionStorage.getItem("conf" + 0  +  "inicioPropuestas") + " / " + sessionStorage.getItem("conf" + 0  +  "finPropuestas") + "</div>" +
+            "<hr>"
+            );       
+        document.getElementById("propeustaBotonID").innerHTML = "Modificar propuesta";
     }
 }
 

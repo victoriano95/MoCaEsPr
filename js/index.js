@@ -1,15 +1,20 @@
 
 
 window.addEventListener("load",function(event) {
+	// PRESUPUESTO
     if (sessionStorage.getItem("conf" + 0) != null) {
     	document.getElementById("presupuestoTotalID").innerHTML = sessionStorage.getItem("conf" + 0 +  "importe");
-    	document.getElementById("presupuestoRestanteID").innerHTML = sessionStorage.getItem("conf" + 0 +  "importeConProyectos");
+    	if (sessionStorage.getItem("aprobado") != "si") {
+    		document.getElementById("presupuestoRestanteID").innerHTML = sessionStorage.getItem("conf" + 0 +  "importe");
+    	} else {
+   			document.getElementById("presupuestoRestanteID").innerHTML = sessionStorage.getItem("conf" + 0 +  "importeConProyectos");
+   		}
     } else {
     	document.getElementById("presupuestoTotalID").innerHTML = 0;
     	document.getElementById("presupuestoRestanteID").innerHTML = 0;
-    	
     }
 
+    // NÚMERO DE PROYECTOS
     document.getElementById("porcentajeTareasID").innerHTML = 0;
 
     if (sessionStorage.getItem("confNumeroProyectos") == null) {
@@ -19,12 +24,13 @@ window.addEventListener("load",function(event) {
    	}
 
 
-   	if (sessionStorage.getItem("confNumeroProyectos") == null) {
+   	if (sessionStorage.getItem("confNumeroProyectos") == null  || sessionStorage.getItem("aprobado") != "si") {
     	document.getElementById("numeroProyectosID").innerHTML = 0;
     } else {
    		document.getElementById("numeroProyectosID").innerHTML = sessionStorage.getItem("confNumeroProyectos");
    	}
 
+   	// RRHH
    	var recursosHumanos = "";
    	var uno = "";
    	var dos = "";
@@ -34,7 +40,7 @@ window.addEventListener("load",function(event) {
     	uno = sessionStorage.getItem("conf" + 0 +  "rrhh");
    	}
 
-   	if (sessionStorage.getItem("confNumeroRRHH") == null) {
+   	if (sessionStorage.getItem("confNumeroRRHH") == null || sessionStorage.getItem("aprobado") != "si") {
     	dos += "0";
     } else {
     	dos += sessionStorage.getItem("confNumeroRRHH");

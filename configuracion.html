@@ -33,6 +33,7 @@
                   <li class="nav-item" role="presentation" id="peticionProyectoID"><a class="nav-link" href="peticionProyecto.html"><i class="fas fa-ad"></i><span>Petición proyecto</span></a></li>
                   <!-- para el class fa: https://www.w3schools.com/icons/icons_reference.asp -->
                   <li class="nav-item" role="presentation" id="evaluarProyectoID"><a class="nav-link" href="proyectosEvaluar.html"><i class="fa fa-list-alt"></i><span>Evaluar proyecto</span></a></li>
+                  <li class="nav-item" role="presentation" id="aprobarProyectoID"><a class="nav-link" href="proyectosAprobar.html"><i class="fa fa-list-alt"></i><span>Aprobar propuesta proyecto</span></a></li>
                   <li class="nav-item" role="presentation"></li>
                </ul>
                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -73,7 +74,7 @@
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                            <div class="nav-item dropdown no-arrow">
-                              <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" id="nombreusuarioHeaderID"></span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" id="nombreusuarioHeaderID"></span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
                               <div
                                  class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                  <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
@@ -87,6 +88,9 @@
                      </ul>
                   </div>
                </nav>
+               <div id="propuestaActual">
+                  
+               </div>
                <div style="width: 50%; margin: 0 auto;">
                   <div style="float:left" class="container-fluid">
                      <small class="form-text text-muted">Importe total de la cartera (€):<input type="text" id="importeID"></small><small class="form-text text-muted">Recursos humanos (horas/año):<input type="text" id="rrhhID"></small><small class="form-text text-muted">Criterios de evaluación de la cartera:<input type="text" id="criteriosID"></small>
@@ -95,7 +99,7 @@
                            class="form-text text-muted" data-toggle="tooltip" data-bs-tooltip="" title="jj">Fin periodo de evaluación :&nbsp;<input type="date" id="finEvID"></small><small class="form-text text-muted">Publucación de resultados :&nbsp;<input type="date" id="publicacionID"></small>                    
                      <small class="form-text text-muted">Documentos :&nbsp;<input type="file" id="docID"></small>
                      <br>
-                     <button class="btn btn-primary d-lg-flex justify-content-lg-start" type="button" onclick="crearConfiguracion()">Crear configuración</button>
+                     <button class="btn btn-primary d-lg-flex justify-content-lg-start" type="button" onclick="crearConfiguracion()" id="propeustaBotonID">Propuesta de configuración</button>
                   </div>
                </div>
             </div>

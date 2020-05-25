@@ -10,14 +10,22 @@ window.addEventListener("load",function(event) {
 
 
 function load () {	
-	var numeroProyectos = 0;
-	proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
-	while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
-		numeroProyectos ++;
-		var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
-	}
-	while (proyecto != null) {
-		$("#bodyProyectsID").append("<tr> "+
+	if (sessionStorage.getItem("aprobado") == "si") {
+		$("#dondeCuelgaID").append("<tr>" +
+                    "<td><h1>La propuesta ya ha sido aceptada</h1></td>" +
+                "</tr>");
+		const myNode = document.getElementById("dataTable");
+  		myNode.innerHTML = '';
+	} else {
+		var numeroProyectos = 0;
+		proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+		while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
+			numeroProyectos ++;console.log("coño");
+			var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+		}
+		while (proyecto != null) {
+			
+			$("#bodyProyectsID").append("<tr> "+
                   	"<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "rrhh") + "</td>" +
@@ -31,11 +39,12 @@ function load () {
                     "<td></td>" +
                 "</tr>");
 
-		numeroProyectos ++;
-		var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
-		while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
 			numeroProyectos ++;
 			var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+			while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
+				numeroProyectos ++;
+				var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+			}
 		}
 	}
 }
@@ -91,6 +100,8 @@ function accept (numero) {
     sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + 
     "Su proyecto " + sessionStorage.getItem("peticionProy" + numero +  "nombre") + " ha sido aceptado "  + "}");	
 
+	sessionStorage.setItem("creadorAprobar", sessionStorage.getItem("usuarioName"));
+
     location.replace("proyectosEvaluar.html");
 }
 
@@ -109,6 +120,8 @@ function decline (numero) {
     sessionStorage.removeItem("peticionProy" + numero +  "finProyecto");
     sessionStorage.removeItem("peticionProy" + numero +  "nombreCreador");
     */
+
+    sessionStorage.setItem("creadorAprobar", sessionStorage.getItem("usuarioName"));
     
     sessionStorage.setItem("evaluarBorrados" + numero, "borrado");
     //location.replace("proyectosEvaluar.html");

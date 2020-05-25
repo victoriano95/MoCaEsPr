@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
       <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-      <script src="js/misProyectos.js"></script>
+      <script src="js/proyectosAprobar.js"></script>
       <script src="js/general.js"></script>
    </head>
    <body id="page-top">
@@ -90,15 +90,34 @@
                   </div>
                </nav>
                <div class="container-fluid">
-                  <h3 class="text-dark mb-4">Mis proyectos</h3>
-                  <div class="card shadow">                     
+                  <h3 class="text-dark mb-4"id="dondeCuelgaID">Configuración de proyectos</h3>
+                  <div class="card shadow"  id="dataTable">
+                     <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Lista de proyectos</p>
+                     </div>
                      <div class="card-body">
                         <div class="row">
-                           <div  id="dataTable_filter"><h3 id="nombreContenidoTablaID">Lista de mis proyectos</h3></div>
+                           <div class="col-md-6 text-nowrap">
+                              <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                                 <label>
+                                    Show&nbsp;
+                                    <select class="form-control form-control-sm custom-select custom-select-sm">
+                                       <option value="10" selected="">10</option>
+                                       <option value="25">25</option>
+                                       <option value="50">50</option>
+                                       <option value="100">100</option>
+                                    </select>
+                                    &nbsp;
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                           </div>
                         </div>
                         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                           <table class="table dataTable my-0">
-                              <thead id="tablaID">
+                           <table class="table dataTable my-0" id="dataTable">
+                              <thead>
                                  <tr>
                                     <th>Nombre del proyecto</th>
                                     <th>Presupuesto</th>
@@ -111,20 +130,11 @@
                                  </tr>
                               </thead>
                               <tbody id="bodyProyectsAcceptadosID">
-                                 <!--
-                                    <tr>
-                                        <td>Airi Satou</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>33</td>
-                                        <td>2008/11/28</td>
-                                        <td>2008/11/28</td>
-                                        <td><a class="btn btn-success btn-circle ml-1" role="button"><i class="fas fa-check text-white"></i></a><a class="btn btn-info btn-circle ml-1" role="button"><i class="fas fa-info-circle text-white"></i></a></td>
-                                        <td></td>
-                                    </tr>
-                                    -->
+
                               </tbody>
                            </table>
+                              <button class="btn btn-primary d-lg-flex justify-content-lg-start" type="button" onclick="aceptar()">Aceptar</button>
+                              <button class="btn btn-primary d-lg-flex justify-content-lg-start" type="button" onclick="rechazar()">Recahzar</button>
                         </div>
                      </div>
                   </div>

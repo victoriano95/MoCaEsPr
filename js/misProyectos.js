@@ -11,7 +11,7 @@ function load() {
   var proyecto = sessionStorage.getItem("estado" + numeroProyectos);
 
   while (proyecto != null) {
-    if (sessionStorage.getItem("peticionProy" + numeroProyectos + "nombreCreador") == sessionStorage.getItem("usuarioName")) {
+    if (sessionStorage.getItem("peticionProy" + numeroProyectos + "nombreCreador") == sessionStorage.getItem("usuarioName") && sessionStorage.getItem("aprobado") == "si") {
           var estadoProyecto = sessionStorage.getItem("estado" + numeroProyectos);
           var icono;
           if (estadoProyecto == "borrado") {

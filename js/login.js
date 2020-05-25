@@ -4,25 +4,25 @@ function entrar() {
     nombre = document.getElementById("nombreID").value;
     contraseña = document.getElementById("passwordID").value;
     if (nombre != '' && contraseña != '') { // en principio no es obligatorio meter docuemntos
-        // Cio
-        if ((nombre == "Pepe" && contraseña == "1234") || (nombre == "Juan" && contraseña == "1234")) {
+        
+        if ((nombre == "Pepe" && contraseña == "1234") || (nombre == "Ana" && contraseña == "1234")) {  // Promotor
 
-            sessionStorage.setItem("usuario", "cio");
+            sessionStorage.setItem("usuario", "promotor");
             location.replace("index.html");
 
-        } else if (nombre == "Victoriano" && contraseña == "1234") { // Director/Rector
+        } else if (nombre == "Juan" && contraseña == "1234") { // Director/Rector
 
             sessionStorage.setItem("usuario", "director");
             location.replace("index.html");
 
-        } else if (nombre == "Berebere" && contraseña == "1234") { // Lo que sea
+        } else if (nombre == "Victoriano" && contraseña == "1234") {  // CIO
 
-            sessionStorage.setItem("usuario", "lo que sea");
+            sessionStorage.setItem("usuario", "cio");
             location.replace("index.html");
 
-        } else if (nombre == "Tururu" && contraseña == "1234") { // El que pueda evaluar el éxito del proyecto
+        } else if (nombre == "admin" && contraseña == "1234") {
 
-            sessionStorage.setItem("usuario", "lo que sea");
+            sessionStorage.setItem("usuario", "admin");
             location.replace("index.html");
 
         } else { 

@@ -6,19 +6,43 @@ window.onload = function() {
   if (usuario != null) {
 	$("#puestoID").append(usuario);
 
-  	if (usuario == "cio") {
-
-    	document.getElementById('configOptionID').style.display = 'none';
-    	document.getElementById('evaluarProyectoID').style.display = 'none';
-    	document.getElementById('proyectosOptionID').style.display = 'none';
-
-  	} else if (usuario == "director") {
+  	if (usuario == "cio") { 
+  		/*	
+  			[+]propone la configuración
+  			[+]influye en la propuesta de proyectos
+  			[]elabora la propuesta de prioridades de los proyectos
+  		*/
 
     	document.getElementById('peticionProyectoID').style.display = 'none';
     	document.getElementById('misProyectosOptionID').style.display = 'none';
+      document.getElementById('aprobarProyectoID').style.display = 'none';
 
-  	} else if (usuario == "lo que sea") {
+  	} else if (usuario == "director") {  
+  		/* 
+  		   []revisa la configuración y la publica si le gusta
+  		   []aprueba la priorización y los proyectos en si
+  		   [+]revisa el éxito de los proyectos
+  		   []si eso calificar el final de los proyectos
+  		*/
 
+    	document.getElementById('peticionProyectoID').style.display = 'none';
+    	document.getElementById('misProyectosOptionID').style.display = 'none';
+      document.getElementById('configOptionID').style.display = 'none';
+      document.getElementById('evaluarProyectoID').style.display = 'none';
+
+  	} else if (usuario == "promotor") {  
+  		/* 
+  		   [+]publica propuestas de proyectos
+  		   [+]revisa los hitos del proyecto
+  		*/
+
+  		document.getElementById('configOptionID').style.display = 'none';
+    	document.getElementById('evaluarProyectoID').style.display = 'none';
+    	document.getElementById('proyectosOptionID').style.display = 'none';
+      document.getElementById('aprobarProyectoID').style.display = 'none';
+
+  	}else if (usuario == "admin") {
+  		// lo puede hacer todo
   	}  
   } else {
   	$("#puestoID").append("Gobern TIC");
@@ -30,6 +54,11 @@ window.onload = function() {
   } else {
   	document.getElementById("nombreusuarioHeaderID").innerHTML = "Nombre usuario";
   }
+
+  if (sessionStorage.getItem("aprobado") == null) {
+    sessionStorage.setItem("aprobado", "no");
+  }
+  
 
   mensajes();
 };
