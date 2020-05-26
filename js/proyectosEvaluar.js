@@ -24,7 +24,7 @@ function load () {
 			var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
 		}
 		while (proyecto != null) {
-			
+
 			$("#bodyProyectsID").append("<tr> "+
                   	"<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
@@ -32,6 +32,9 @@ function load () {
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
+                    "<td><a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"up(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-arrow-up\"></i></a>" +
+                    	"<a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"down(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-arrow-down\"></i></a>" + 
+                    "</td>" +
                     "<td><a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
                     	"<a class=\"btn btn-warning btn-circle ml-1\" role=\button\" onclick=\"standBy(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-minus text-white\"></i></a>" +
                     	"<a class=\"btn btn-danger btn-circle ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-times text-white\"></i></a>" +
@@ -149,3 +152,91 @@ function standBy (numero) {
 	location.replace("proyectosEvaluar.html");
 }
 
+
+
+function up (numero) {
+	if (numero > 0) {
+		intercambiarPuestos (numero, numero - 1)
+	}
+}
+
+function down (numero) {
+	var numeroProyectos = 0;
+	proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+	while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
+		numeroProyectos ++;console.log("coño");
+		var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+	}
+	while (proyecto != null) {
+		numeroProyectos ++;
+		var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+		while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
+			numeroProyectos ++;
+			var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+		}
+	}
+
+	if (numero < numeroProyectos - 1) {
+		intercambiarPuestos (numero, numero + 1);
+	}
+}
+
+function intercambiarPuestos (numero1, numero2) {
+	// gaurdar estado anterior
+	var aux1 = sessionStorage.getItem("peticionProy" + numero1);//con todos
+    var aux2 = sessionStorage.getItem("peticionProy" + numero1 +  "nombre");
+    var aux3 = sessionStorage.getItem("peticionProy" + numero1 +  "coste");
+    var aux4= sessionStorage.getItem("peticionProy" + numero1 +  "rrhh");
+    var aux5= sessionStorage.getItem("peticionProy" + numero1 +  "conseguir");
+    var aux6 = sessionStorage.getItem("peticionProy" + numero1 +  "inicioProyecto");
+    var aux7 = sessionStorage.getItem("peticionProy" + numero1 +  "finProyecto");
+        // las tareas
+    var aux8 = sessionStorage.getItem("peticionProy" + numero1 +  "numeroTareas");
+    var aux9 = [];
+    var aux10 = [];
+    for (var i = 0; i< aux8; i++) {
+        aux9 [i] = sessionStorage.getItem("peticionProy" + numero1 +  "tarea" + i); // de que va la tarea
+        aux10 [i] = sessionStorage.getItem("peticionProy" + numero1 +  "tareaEstado" + i); // su estado
+    }
+
+    var aux11 = sessionStorage.getItem("peticionProy" + numero1 +  "nombreCreador");
+    var aux12 = sessionStorage.getItem("estado" + numero1);
+
+    // meter numero2 en numero 1
+    sessionStorage.setItem("peticionProy" + numero1, sessionStorage.getItem("peticionProy" + numero2));//con todos
+    sessionStorage.setItem("peticionProy" + numero1 +  "nombre", sessionStorage.getItem("peticionProy" + numero2 +  "nombre"));
+    sessionStorage.setItem("peticionProy" + numero1 +  "coste", sessionStorage.getItem("peticionProy" + numero2 +  "coste"));
+    sessionStorage.setItem("peticionProy" + numero1 +  "rrhh", sessionStorage.getItem("peticionProy" + numero2 +  "rrhh"));
+    sessionStorage.setItem("peticionProy" + numero1 +  "conseguir", sessionStorage.getItem("peticionProy" + numero2 +  "conseguir"));
+    sessionStorage.setItem("peticionProy" + numero1 +  "inicioProyecto", sessionStorage.getItem("peticionProy" + numero2 +  "inicioProyecto"));
+    sessionStorage.setItem("peticionProy" + numero1 +  "finProyecto", sessionStorage.getItem("peticionProy" + numero2 +  "finProyecto"));
+        // las tareas
+    var numeroTareas = sessionStorage.getItem("peticionProy" + numero2 +  "numeroTareas");
+    for (var i = 0; i< numeroTareas; i++) {
+        sessionStorage.setItem("peticionProy" + numero1 +  "tarea" + i, sessionStorage.getItem("peticionProy" + numero2 +  "tarea" + i)); // de que va la tarea
+        sessionStorage.setItem("peticionProy" + numero1 +  "tareaEstado" + i, sessionStorage.getItem("peticionProy" + numero2 +  "tareaEstado" + i)); // su estado
+    }
+
+    sessionStorage.setItem("peticionProy" + numero1 +  "nombreCreador", sessionStorage.getItem("peticionProy" + numero2 +  "nombreCreador"));
+    sessionStorage.setItem("estado" + numero1, sessionStorage.getItem("estado" + numero2));
+
+    // meter el auxiliar en numero 2
+    sessionStorage.setItem("peticionProy" + numero2, aux1);//con todos
+    sessionStorage.setItem("peticionProy" + numero2 +  "nombre", aux2);
+    sessionStorage.setItem("peticionProy" + numero2 +  "coste", aux3);
+    sessionStorage.setItem("peticionProy" + numero2 +  "rrhh", aux4);
+    sessionStorage.setItem("peticionProy" + numero2 +  "conseguir", aux5);
+    sessionStorage.setItem("peticionProy" + numero2 +  "inicioProyecto", aux6);
+    sessionStorage.setItem("peticionProy" + numero2 +  "finProyecto", aux7);
+        // las tareas
+    var numeroTareas = aux8;
+    for (var i = 0; i< numeroTareas; i++) {
+        sessionStorage.setItem("peticionProy" + numero2 +  "tarea" + i, aux9[i]); // de que va la tarea
+        sessionStorage.setItem("peticionProy" + numero2 +  "tareaEstado" + i, aux10[i]); // su estado
+    }
+
+    sessionStorage.setItem("peticionProy" + numero2 +  "nombreCreador", aux11);
+    sessionStorage.setItem("estado" + numero2, aux12);
+
+    location.replace("proyectosEvaluar.html");
+}

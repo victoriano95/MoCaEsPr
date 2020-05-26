@@ -2,7 +2,7 @@
 
 window.addEventListener("load",function(event) {
 	// PRESUPUESTO
-    if (sessionStorage.getItem("conf" + 0) != null) {
+    if (sessionStorage.getItem("configuacionAprobada") != null) {
     	document.getElementById("presupuestoTotalID").innerHTML = sessionStorage.getItem("conf" + 0 +  "importe");
     	if (sessionStorage.getItem("aprobado") != "si") {
     		document.getElementById("presupuestoRestanteID").innerHTML = sessionStorage.getItem("conf" + 0 +  "importe");
@@ -34,13 +34,13 @@ window.addEventListener("load",function(event) {
    	var recursosHumanos = "";
    	var uno = "";
    	var dos = "";
-   	if (sessionStorage.getItem("conf" + 0 +  "rrhh") == null) {
+   	if (sessionStorage.getItem("configuacionAprobada") == null) {
     	uno = "0";
     } else {
     	uno = sessionStorage.getItem("conf" + 0 +  "rrhh");
    	}
 
-   	if (sessionStorage.getItem("confNumeroRRHH") == null || sessionStorage.getItem("aprobado") != "si") {
+   	if (sessionStorage.getItem("configuacionAprobada") == null || sessionStorage.getItem("aprobado") != "si") {
     	dos += "0";
     } else {
     	dos += sessionStorage.getItem("confNumeroRRHH");
@@ -53,6 +53,8 @@ window.addEventListener("load",function(event) {
    	document.getElementById("barraRRHHID").style.width = porcentaje + "%";
 
    	estadoDeLosProyectos();
+
+    tareasPorHacer ();
 
 },false);
 
@@ -100,18 +102,43 @@ function estadoDeLosProyectos () {
 
 function estadoProyecto (numero) {
 	for (var n = 0; n < numero; n++){
-	var numeroTareas = sessionStorage.getItem("peticionProy" + n +  "numeroTareas");
-	var contadorFinalizadas = 0;
-	for (var i = 0; i < numeroTareas; i++ ){
-		if (sessionStorage.getItem("peticionProy" + n +  "tareaEstado" + i) == "finalizado") {
-			contadorFinalizadas ++;
-		}
-	}
-	var porcentaje = 1.5;
-	porcentaje = (parseInt(contadorFinalizadas) / parseInt(numeroTareas)) * 100;
-	//console.log(contadorFinalizadas + "/" + numeroTareas + ": " + porcentaje);
+	 var numeroTareas = sessionStorage.getItem("peticionProy" + n +  "numeroTareas");
+	 var contadorFinalizadas = 0;
+	 for (var i = 0; i < numeroTareas; i++ ){
+		  if (sessionStorage.getItem("peticionProy" + n +  "tareaEstado" + i) == "finalizado") {
+			 contadorFinalizadas ++;
+		  }
+	  }
+	 var porcentaje = 1.5;
+	 porcentaje = (parseInt(contadorFinalizadas) / parseInt(numeroTareas)) * 100;
+	 //console.log(contadorFinalizadas + "/" + numeroTareas + ": " + porcentaje);
 
-	document.getElementById("contenidoBarraID" + n).style.width = porcentaje + "%";
-	document.getElementById("nombreBarraID" + n).innerHTML = contadorFinalizadas + "/" + numeroTareas + " tareas finalizadas";
+	 document.getElementById("contenidoBarraID" + n).style.width = porcentaje + "%";
+	 document.getElementById("nombreBarraID" + n).innerHTML = contadorFinalizadas + "/" + numeroTareas + " tareas finalizadas";
+  }
 }
+
+function tareasPorHacer () {
+  
+  document.getElementById("tareasPorHacerID").innerHTML = "No hay tareas pendientes por ahora";
+/*
+  $("#puestoID").append(usuario);
+  if (usuario == "cio") { 
+      
+    if () { // configuración no propuesta
+      document.getElementById("tareasPorHacerID").innerHTML = "Crear la configuración del portafolio";
+    } else if () {  // no creada propuesta de los proyectos
+      document.getElementById("tareasPorHacerID").innerHTML = "Crear la propuesta de ordenación de los proyectos propuestos";
+    }
+
+  } else if (usuario == "director") {  
+      
+
+
+  } else if (usuario == "promotor") {  
+      
+
+
+  }*/
+
 }

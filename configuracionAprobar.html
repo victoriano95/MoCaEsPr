@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
       <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-      <script src="js/peticionProyectos.js"></script>
+      <script src="js/configuracionAprobar.js"></script>
       <script src="js/general.js"></script>
    </head>
    <body id="page-top">
@@ -71,7 +71,7 @@
                         <div class="d-none d-sm-block topbar-divider"></div>
                         <li class="nav-item dropdown no-arrow" role="presentation">
                            <div class="nav-item dropdown no-arrow">
-                              <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" id="nombreusuarioHeaderID"></span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" id="nombreusuarioHeaderID"></span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
                               <div
                                  class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                  <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
@@ -85,22 +85,24 @@
                      </ul>
                   </div>
                </nav>
-               <!-- Opciones para crear proyectos -->
-               <div style="width: 50%; margin: 0 auto;">
-                  <div style="float:left" class="container-fluid">
-                     <small class="form-text text-muted">Nombre del proyecto:<input type="text" id="nombreProyID"></small>
-                     <small class="form-text text-muted">Cuanto costará el proyecto (€):<input type="text" id="costeProyID"></small>
-                     <small class="form-text text-muted">Recursos humanos necearios (horas/año):<input type="text" id="rrhhProyID"></small>
-                     <small class="form-text text-muted">Que se pretende conseguir:<input type="text" id="conseguirProyID"></small>
-                     <small class="form-text text-muted">Inicio proyecto:&nbsp;<input type="date" id="inProyID"></small>
-                     <small class="form-text text-muted">Fin proyecto:&nbsp;<input type="date" id="finProyID"></small>
-                     <div id="conjuntoTareasID">
-                        <small class="form-text text-muted">Tarea 1: <input type="text" id="tarea0ID"></small>
+               <div id="propuestaActual">
+                  
+               </div>
+               <div style="width: 30%; margin: 0 auto;">
+                  <div style="float:left" class="container-fluid" id="losBotonesDeConfiguracionID">
+                     
+                     <div style="width:400px;">
+                        <div style="float: left;> 
+                           <form id="thisone" action="post_nrs_users.asp" method="post">
+                              <button class="btn btn-success" type="button" onclick="crearConfiguracion()" id="propeustaBotonID">Aprobar configuración</button>
+                           </form>
+                        </div>
+                        <div style="float: right; > 
+                           <form id="thistoo" action="post_nrs_users.asp" method="post">
+                              <button class="btn btn-danger" type="button" onclick="descartarConfiguracion()" id="propeustaBotonID">Descartar configuracíón</button>
+                           </form>
+                        </div>
                      </div>
-                     <button type="button" class="btn btn-outline-info" onclick="añadirTarea()">Añadir otra tarea</button>
-                     <br>
-                     <hr>
-                     <button class="btn btn-primary d-lg-flex justify-content-lg-start" type="button" onclick="crearPeticion()">Crear petición</button>
                   </div>
                </div>
             </div>

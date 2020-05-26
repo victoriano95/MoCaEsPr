@@ -15,19 +15,19 @@ function crearConfiguracion() {
             numerConfiguraciones++;
             result = sessionStorage.getItem("conf" + numerConfiguraciones);
         }
-   
-        sessionStorage.setItem("conf" + numerConfiguraciones, "creada");
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "importe", document.getElementById("importeID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "rrhh", document.getElementById("rrhhID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "criteriosEvaluacion", document.getElementById("criteriosID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "inicioPropuestas", document.getElementById("inPropID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "finPropuestas", document.getElementById("finPropID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "inicioEvaluacion", document.getElementById("inEvID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "finEvaluacion", document.getElementById("finEvID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "publicacion", document.getElementById("publicacionID").value);
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "documentos", document.getElementById("docID").value);
+    // antes numerConfiguraciones
+        sessionStorage.setItem("conf" + 0, "creada");
+        sessionStorage.setItem("conf" + 0 +  "importe", document.getElementById("importeID").value);
+        sessionStorage.setItem("conf" + 0 +  "rrhh", document.getElementById("rrhhID").value);
+        sessionStorage.setItem("conf" + 0 +  "criteriosEvaluacion", document.getElementById("criteriosID").value);
+        sessionStorage.setItem("conf" + 0 +  "inicioPropuestas", document.getElementById("inPropID").value);
+        sessionStorage.setItem("conf" + 0 +  "finPropuestas", document.getElementById("finPropID").value);
+        sessionStorage.setItem("conf" + 0 +  "inicioEvaluacion", document.getElementById("inEvID").value);
+        sessionStorage.setItem("conf" + 0 +  "finEvaluacion", document.getElementById("finEvID").value);
+        sessionStorage.setItem("conf" + 0 +  "publicacion", document.getElementById("publicacionID").value);
+        sessionStorage.setItem("conf" + 0 +  "documentos", document.getElementById("docID").value);
 
-        sessionStorage.setItem("conf" + numerConfiguraciones +  "importeConProyectos", document.getElementById("importeID").value);
+        sessionStorage.setItem("conf" + 0 +  "importeConProyectos", document.getElementById("importeID").value);
 
         location.replace("index.html");
     } else {
@@ -38,12 +38,20 @@ function crearConfiguracion() {
 
 function existeConfiguracion () {
     if (sessionStorage.getItem("conf0") != null) {
-        $("#propuestaActual").append(
+        $("#propuestaActual").append("<center>" +
             "<h2> Propuesta actual:  </h2>" +
-            "<div>Importe " + sessionStorage.getItem("conf" + 0 +  "importe") + "</div>" +
-            "<div>Recursos humanos " + sessionStorage.getItem("conf" + 0 +  "rrhh") + "</div>" +
-            "<div>Criterios " + sessionStorage.getItem("conf" + 0  +  "criteriosEvaluacion") + "</div>" + 
-            "<div>Período de tiempo " + sessionStorage.getItem("conf" + 0  +  "inicioPropuestas") + " / " + sessionStorage.getItem("conf" + 0  +  "finPropuestas") + "</div>" +
+            "<div style=\"width:800px; margin: auto;\">" +  
+            "<br>" +
+            "<div style=\"float:left\">Importe " + sessionStorage.getItem("conf" + 0 +  "importe") + "</div>" + 
+            "<br>" +
+            "<div style=\"float:left\">Recursos humanos " + sessionStorage.getItem("conf" + 0 +  "rrhh") + "</div>" + 
+            "<br>" +
+            "<div style=\"float:left\">Criterios " + sessionStorage.getItem("conf" + 0  +  "criteriosEvaluacion") + "</div>" +  
+            "<br>" +
+            "<div style=\"float:left\">Período de tiempo " + sessionStorage.getItem("conf" + 0  +  "inicioPropuestas") + " / " + sessionStorage.getItem("conf" + 0  +  "finPropuestas") + "</div>" + 
+            "<br>" +
+            "</div>" +
+            "</center>" + 
             "<hr>"
             );       
         document.getElementById("propeustaBotonID").innerHTML = "Modificar propuesta";

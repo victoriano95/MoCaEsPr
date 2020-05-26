@@ -1,26 +1,31 @@
 
-
+/*
+Mensajes cuando se aprueban/cancelan cosas
+Quitar todo lo que no se use
+Si se presta que cuando se haga lo de evalaur que no se borren
+*/
 
 window.onload = function() {
   var usuario = sessionStorage.getItem("usuario");
   if (usuario != null) {
-	$("#puestoID").append(usuario);
+	  $("#puestoID").append(usuario);
 
   	if (usuario == "cio") { 
   		/*	
   			[+]propone la configuración
   			[+]influye en la propuesta de proyectos
-  			[]elabora la propuesta de prioridades de los proyectos
+  			[+]elabora la propuesta de prioridades de los proyectos
   		*/
 
     	document.getElementById('peticionProyectoID').style.display = 'none';
     	document.getElementById('misProyectosOptionID').style.display = 'none';
       document.getElementById('aprobarProyectoID').style.display = 'none';
+      document.getElementById('configOptionApobarID').style.display = 'none';
 
   	} else if (usuario == "director") {  
   		/* 
-  		   []revisa la configuración y la publica si le gusta
-  		   []aprueba la priorización y los proyectos en si
+  		   [+]revisa la configuración y la publica si le gusta
+  		   [+]aprueba la priorización y los proyectos en si
   		   [+]revisa el éxito de los proyectos
   		   []si eso calificar el final de los proyectos
   		*/
@@ -40,6 +45,7 @@ window.onload = function() {
     	document.getElementById('evaluarProyectoID').style.display = 'none';
     	document.getElementById('proyectosOptionID').style.display = 'none';
       document.getElementById('aprobarProyectoID').style.display = 'none';
+      document.getElementById('configOptionApobarID').style.display = 'none';
 
   	}else if (usuario == "admin") {
   		// lo puede hacer todo
