@@ -29,6 +29,8 @@ function crearConfiguracion() {
 
         sessionStorage.setItem("conf" + 0 +  "importeConProyectos", document.getElementById("importeID").value);
 
+        sessionStorage.setItem("nombreDeLaCreacionDeLaConfiguracion", sessionStorage.getItem("usuarioName"));
+
         location.replace("index.html");
     } else {
         alert("Necesita completar todos los campos para crear la configuración");
@@ -57,4 +59,7 @@ function existeConfiguracion () {
         document.getElementById("propeustaBotonID").innerHTML = "Modificar propuesta";
     }
 }
+
+
+
 

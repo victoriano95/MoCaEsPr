@@ -30,6 +30,8 @@ function crearPeticion() {
         sessionStorage.setItem("peticionProy" + numeroPeticion +  "nombreCreador", sessionStorage.getItem("usuarioName"));
         sessionStorage.setItem("estado" + numeroPeticion, "espera");
 
+        sessionStorage.setItem ("fasePortfolioAux", "yes");
+
         location.replace("index.html");
     } else {
         alert("Necesita completar todos los campos para la creación de este petición de proyecto");

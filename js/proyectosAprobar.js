@@ -40,7 +40,7 @@ function load() {
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
-                    "<td>" + "-" + "</td>" +  // se puede cambiar por otra cosa la ejecución
+                    //"<td>" + "-" + "</td>" +  // se puede cambiar por otra cosa la ejecución
                     "<td>"+ 
                       icono +
                     "</td>" +
@@ -62,7 +62,8 @@ function load() {
 
 function aceptar (numero) {
   sessionStorage.setItem("aprobado", "si");
-   message ("La propuesta ha sido aceptada");
+  message ("La propuesta ha sido aceptada");
+  sessionStorage.setItem ("fasePortfolio", 4);
   location.replace("index.html");
 }
 
@@ -85,6 +86,9 @@ function message (texto) {
   // sacar de quien es la propuesta de proyecto
   var nombreCreadorPropuesta = sessionStorage.getItem("creadorAprobar");
   var mensajeAntiguo = sessionStorage.getItem("mensaje" + nombreCreadorPropuesta);
+  if (mensajeAntiguo == null) {
+    mensajeAntiguo = "";
+  }
   sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + texto +"}");
-
 }
+

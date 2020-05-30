@@ -9,8 +9,9 @@ var numerConfiguraciones = 0;
 function crearConfiguracion() {
     // memoria
     sessionStorage.setItem("configuacionAprobada", "si");
+    message("Se apruba su configuración para la cartera de proyectos");
 
-    // avisar al cio
+    sessionStorage.setItem ("fasePortfolio", 2);
 
     location.replace("index.html");
 }
@@ -18,16 +19,17 @@ function crearConfiguracion() {
 function descartarConfiguracion () {
 
     sessionStorage.removeItem("conf" + 0, "creada");
-    sessionStorage.removeItem("conf" + 0 +  "importe", document.getElementById("importeID").value);
-    sessionStorage.removeItem("conf" + 0 +  "rrhh", document.getElementById("rrhhID").value);
-    sessionStorage.removeItem("conf" + 0 +  "criteriosEvaluacion", document.getElementById("criteriosID").value);
-    sessionStorage.removeItem("conf" + 0 +  "inicioPropuestas", document.getElementById("inPropID").value);
-    sessionStorage.removeItem("conf" + 0 +  "finPropuestas", document.getElementById("finPropID").value);
-    sessionStorage.removeItem("conf" + 0 +  "inicioEvaluacion", document.getElementById("inEvID").value);
-    sessionStorage.removeItem("conf" + 0 +  "finEvaluacion", document.getElementById("finEvID").value);
-    sessionStorage.removeItem("conf" + 0 +  "publicacion", document.getElementById("publicacionID").value);
-    sessionStorage.removeItem("conf" + 0 +  "documentos", document.getElementById("docID").value);
-    sessionStorage.removeItem("conf" + 0 +  "importeConProyectos", document.getElementById("importeID").value);
+    sessionStorage.removeItem("conf" + 0 +  "importe");
+    sessionStorage.removeItem("conf" + 0 +  "rrhh");
+    sessionStorage.removeItem("conf" + 0 +  "inicioPropuestas");
+    sessionStorage.removeItem("conf" + 0 +  "finPropuestas");
+    sessionStorage.removeItem("conf" + 0 +  "inicioEvaluacion");
+    sessionStorage.removeItem("conf" + 0 +  "finEvaluacion");
+    sessionStorage.removeItem("conf" + 0 +  "publicacion");
+    sessionStorage.removeItem("conf" + 0 +  "documentos");
+    sessionStorage.removeItem("conf" + 0 +  "importeConProyectos");
+
+    message("Se descara su configuración para la cartera de proyectos");
 
     // avisar al CIO
     location.replace("index.html");
@@ -60,5 +62,22 @@ function aprobarConfiguracion () {
         const myNode = document.getElementById("losBotonesDeConfiguracionID");
         myNode.innerHTML = '';
     }
+}
+
+
+/*
+Envia mensaje al que propone la propuesta de configuración con si la aprueban o no
+*/
+function message (mensaje) {
+  
+  // sacar de quien es la propuesta de proyecto
+  var nombreCreadorPropuesta = sessionStorage.getItem("nombreDeLaCreacionDeLaConfiguracion");
+  var mensajeAntiguo = sessionStorage.getItem("mensaje" + nombreCreadorPropuesta);
+  if (mensajeAntiguo == null) {
+    mensajeAntiguo = "";
+  }
+   sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + mensaje +"}");
+
+   location.replace("exitoProyectos.html");
 }
 

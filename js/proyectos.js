@@ -7,6 +7,7 @@ window.addEventListener("load",function(event) {
 
 
 function load() {
+
   if (sessionStorage.getItem("aprobado") != "si") {
     $("#dondeCuelgaID").append("<tr>" +
                     "<td><h1>No hay proyectos aprobados de momento</h1></td>" +
@@ -14,36 +15,73 @@ function load() {
       const myNode = document.getElementById("dataTable");
       myNode.innerHTML = '';
   } else {
-      var numeroProyectos = 0;
-      proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-      while (sessionStorage.getItem("enProcesoBorrados" + numeroProyectos) != null) { // se ha borrado
-         numeroProyectos ++;
-         var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-      }
-      while (proyecto != null) {
-         $("#bodyProyectsAcceptadosID").append("<tr> "+
-                    "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "nombre") + "</td>" +
-                    "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "coste") + "</td>" +
-                    "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "rrhh") + "</td>" +
-                    "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "conseguir") + "</td>" +
-                    "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "inicioProyecto") + "</td>" +
-                    "<td>" + sessionStorage.getItem("proyectoEnCurso" + numeroProyectos + "finProyecto") + "</td>" +
+
+    var numeroProyectos = 0;
+    var numeroProyectos = 0;
+    var proyectosStandBy = "";
+    var proyectosBorrados = "";
+    proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+    while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
+      numeroProyectos ++;console.log("coño");
+      var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+    }
+    while (proyecto != null) {
+
+            if (sessionStorage.getItem("estado" + numeroProyectos) == "borrado") {
+                proyectosBorrados += "<tr> "+
+                    "<td bgcolor=\"red\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
+                    "<td bgcolor=\"red\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
+                    "<td bgcolor=\"red\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "rrhh") + "</td>" +
+                    "<td bgcolor=\"red\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
+                    "<td bgcolor=\"red\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
+                    "<td bgcolor=\"red\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
+                    "<td bgcolor=\"red\">"+
+                      //"<a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
+                      "<a class=\"btn btn-success btn-circle ml-1\"  bgcolor=\"red\" role=\"button\" onclick=\"message(" + numeroProyectos + ")\"><i class=\"fas fa-envelope-square text-white\"></i></a>" +
+                      //"<a class=\"btn btn-info btn-circle ml-1\"  bgcolor=\"red\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\"><i class=\"fas fa-times text-white\"></i></a>" +
+                    "</td>"+
+                "</tr>";
+            } else if (sessionStorage.getItem("estado" + numeroProyectos) == "standBy") {
+                proyectosStandBy += "<tr> "+
+                    "<td bgcolor=\"orange\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
+                    "<td bgcolor=\"orange\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
+                    "<td bgcolor=\"orange\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "rrhh") + "</td>" +
+                    "<td bgcolor=\"orange\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
+                    "<td bgcolor=\"orange\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
+                    "<td bgcolor=\"orange\">" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
+                    "<td bgcolor=\"orange\">"+
+                      //"<a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
+                      "<a class=\"btn btn-success btn-circle ml-1\"  bgcolor=\"orange\" role=\"button\" onclick=\"message(" + numeroProyectos + ")\"><i class=\"fas fa-envelope-square text-white\"></i></a>" +
+                      //"<a class=\"btn btn-info btn-circle  bgcolor=\"orange\" ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\"><i class=\"fas fa-times text-white\"></i></a>" +
+                    "</td>" +
+                "</tr>";
+            } else { // por defecto el proyecto se aprueba
+                $("#bodyProyectsAcceptadosID").append("<tr> "+
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "rrhh") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
                     "<td>"+
                       //"<a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
-                      "<a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"message(" + numeroProyectos + ")\"><i class=\"fas fa-envelope-square\"></i></a>" +
+                      "<a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"message(" + numeroProyectos + ")\"><i class=\"fas fa-envelope-square text-white\"></i></a>" +
                       "<a class=\"btn btn-info btn-circle ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\"><i class=\"fas fa-times text-white\"></i></a>" +
                     "</td>" +
-                    "<td></td>" +
                 "</tr>");
-    
-         numeroProyectos ++;
-         var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-         while (sessionStorage.getItem("enProcesoBorrados" + numeroProyectos) != null) { // se ha borrado
-            numeroProyectos ++;
-            var proyecto = sessionStorage.getItem("proyectoEnCurso" + numeroProyectos, "creada");
-         }
+            }
+
+      
+
+      numeroProyectos ++;
+      var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
+      while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
+        numeroProyectos ++;
+        var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
       }
-   }
+    }
+    $("#bodyProyectsAcceptadosID").append(proyectosStandBy + proyectosBorrados);
+  }
 }
 
 function decline (numero) {
@@ -97,6 +135,9 @@ function message (numero) {
     // sacar de quien es la propuesta de proyecto
     var nombreCreadorPropuesta = sessionStorage.getItem("proyectoEnCurso" + numero + "nombreCreador");
     var mensajeAntiguo = sessionStorage.getItem("mensaje" + nombreCreadorPropuesta);
+    if (mensajeAntiguo == null) ´{
+      mensajeAntiguo = "";
+    }
     sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + mensaje +"}");
 
   }

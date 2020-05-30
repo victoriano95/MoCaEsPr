@@ -1,8 +1,8 @@
 
 /*
 Mensajes cuando se aprueban/cancelan cosas
-Quitar todo lo que no se use
-Si se presta que cuando se haga lo de evalaur que no se borren
+Evaluar
+Tareas pendientes para el cargo
 */
 
 window.onload = function() {
@@ -21,13 +21,14 @@ window.onload = function() {
     	document.getElementById('misProyectosOptionID').style.display = 'none';
       document.getElementById('aprobarProyectoID').style.display = 'none';
       document.getElementById('configOptionApobarID').style.display = 'none';
+      document.getElementById('exitoProyectoID').style.display = 'none';
 
   	} else if (usuario == "director") {  
   		/* 
   		   [+]revisa la configuración y la publica si le gusta
   		   [+]aprueba la priorización y los proyectos en si
   		   [+]revisa el éxito de los proyectos
-  		   []si eso calificar el final de los proyectos
+  		   [+]si eso calificar el final de los proyectos
   		*/
 
     	document.getElementById('peticionProyectoID').style.display = 'none';
@@ -46,6 +47,7 @@ window.onload = function() {
     	document.getElementById('proyectosOptionID').style.display = 'none';
       document.getElementById('aprobarProyectoID').style.display = 'none';
       document.getElementById('configOptionApobarID').style.display = 'none';
+      document.getElementById('exitoProyectoID').style.display = 'none';
 
   	}else if (usuario == "admin") {
   		// lo puede hacer todo

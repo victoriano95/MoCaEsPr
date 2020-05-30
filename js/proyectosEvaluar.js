@@ -24,6 +24,24 @@ function load () {
 			var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
 		}
 		while (proyecto != null) {
+            // como tendrán que ser los 3 botones de cada fila
+            var botonAceptar = "border border-info";
+            var textoAceptar = "black";
+            var botonBorrar = "border border-info";
+            var textoBorrar = "black";
+            var botonStandBy = "border border-info";
+            var textoStandBy = "black";
+            if (sessionStorage.getItem("estado" + numeroProyectos) == "borrado") {
+                botonBorrar = "btn-danger";
+                textoBorrar = "white";
+            } else if (sessionStorage.getItem("estado" + numeroProyectos) == "standBy") {
+                botonStandBy = "btn-warning";
+                textoStandBy = "white";
+            } else { // por defecto el proyecto se aprueba
+                sessionStorage.setItem("estado" + numeroProyectos, "aceptado");
+                botonAceptar = "btn-success";
+                textoAceptar = "white";
+            }
 
 			$("#bodyProyectsID").append("<tr> "+
                   	"<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
@@ -35,9 +53,9 @@ function load () {
                     "<td><a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"up(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-arrow-up\"></i></a>" +
                     	"<a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"down(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-arrow-down\"></i></a>" + 
                     "</td>" +
-                    "<td><a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
-                    	"<a class=\"btn btn-warning btn-circle ml-1\" role=\button\" onclick=\"standBy(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-minus text-white\"></i></a>" +
-                    	"<a class=\"btn btn-danger btn-circle ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-times text-white\"></i></a>" +
+                    "<td><a class=\"btn " + botonAceptar + " btn-circle ml-1  \" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-" + textoAceptar + "\"></i></a>" +
+                    	"<a class=\"btn " + botonStandBy + " btn-circle ml-1\" role=\button\" onclick=\"standBy(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-minus text-" + textoStandBy + "\"></i></a>" +
+                    	"<a class=\"btn " + botonBorrar +  " btn-circle ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-times text-" + textoBorrar + "\"></i></a>" +
                     "</td>" +
                     "<td></td>" +
                 "</tr>");
@@ -93,7 +111,7 @@ function accept (numero) {
     	sessionStorage.setItem("confNumeroRRHH", numeroRRHH);
     }
 
-	sessionStorage.setItem("evaluarBorrados" + numero, "borrado");  
+	//sessionStorage.setItem("evaluarBorrados" + numero, "borrado");  
 
 	// Notificar que ha sido aprobado
 	// notificar al que lo publicó
@@ -126,7 +144,7 @@ function decline (numero) {
 
     sessionStorage.setItem("creadorAprobar", sessionStorage.getItem("usuarioName"));
     
-    sessionStorage.setItem("evaluarBorrados" + numero, "borrado");
+    //sessionStorage.setItem("evaluarBorrados" + numero, "borrado");
     //location.replace("proyectosEvaluar.html");
 }
 
@@ -148,7 +166,7 @@ function motivoEliminacion(variable) {
 
 function standBy (numero) {
 	sessionStorage.setItem("estado" + numero, "standBy");
-	sessionStorage.setItem("evaluarBorrados" + numero, "borrado");
+	//sessionStorage.setItem("evaluarBorrados" + numero, "borrado");
 	location.replace("proyectosEvaluar.html");
 }
 
@@ -239,4 +257,11 @@ function intercambiarPuestos (numero1, numero2) {
     sessionStorage.setItem("estado" + numero2, aux12);
 
     location.replace("proyectosEvaluar.html");
+}
+
+
+function enviarPropuesta () {
+    sessionStorage.setItem("propuestaDeProyectosCreada", "si");
+    // mensaje
+    location.replace("index.html");
 }

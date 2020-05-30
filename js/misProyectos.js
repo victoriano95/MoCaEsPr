@@ -99,15 +99,63 @@ function ejecucionProyecto (numero) {
     sessionStorage.setItem("estado" + numero, "finalizado");
   }
   
+  // añadir las tareas
   $("#dataTable").append("<table class=\"table dataTable my-0\">" +
                               "<tbody id=\"bodyTareasProyectoID\">" +
-                                    lsitaTareas +
+                                    lsitaTareas +                                      
                               "</tbody>" +
                            "</table>");
+
   for (var i = 0; i < sessionStorage.getItem("peticionProy" + numero + "numeroTareas"); i ++) {
     var checkBox = document.getElementById(lasQueEmpiezanConCheck [i] + i);
     checkBox.checked = true;
   }
+
+  // las variaciones con el plan previsto
+  var variacionPresupuesto = sessionStorage.getItem("peticionProyVarPresupuesto" + numero);
+  var variacionFecha = sessionStorage.getItem("peticionVarProyFecha" + numero);
+  var variacionRRHH = sessionStorage.getItem("peticionVarProyRRHH" + numero);
+  if (variacionPresupuesto == null) {
+    sessionStorage.setItem("peticionProyVarPresupuesto" + numero, "normal");
+    variacionPresupuesto = sessionStorage.getItem("peticionProyVarPresupuesto" + numero);
+  }
+  if (variacionFecha == null) {
+    sessionStorage.setItem("peticionVarProyFecha" + numero, "normal");
+    variacionFecha = sessionStorage.getItem("peticionVarProyFecha" + numero);
+  }
+  if (variacionRRHH == null) {
+    sessionStorage.setItem("peticionVarProyRRHH" + numero, "normal");
+    variacionRRHH = sessionStorage.getItem("peticionVarProyRRHH" + numero);
+  }
+  $("#dataTable").append("<table class=\"table dataTable my-0\">" +
+                           "<tbody id=\"bodyTareasProyectoID\">" +
+                            "<h2>Variaciones con el plan inicial</h2>" + 
+                              "<tr>" +
+                              "<td>" + "Presupuesto" + "</td>"+   
+                                "<td>" + "<label for=\"myCheck\">Mejor  </label><input type=\"checkbox\" id=\"mejor" + "presupuesto" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionProyVarPresupuesto', " + "'mejor'" +")\">" + "</td>" +
+                                "<td>" + "<label for=\"myCheck\">Igual  </label><input type=\"checkbox\" id=\"normal" + "presupuesto" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionProyVarPresupuesto', " + "'normal'" +")\">" + "</td>" +
+                                "<td>" + "<label for=\"myCheck\">Peor  </label><input type=\"checkbox\" id=\"peor" + "presupuesto" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionProyVarPresupuesto', " + "'peor'" +")\">" + "</td>" +                                 
+                              "</tr>" +
+                              "<tr>" +
+                              "<td>" + "Fecha" + "</td>"+   
+                                "<td>" + "<label for=\"myCheck\">Mejor  </label><input type=\"checkbox\" id=\"mejor" + "fecha" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionVarProyFecha', " + "'mejor'" +")\">" + "</td>" +
+                                "<td>" + "<label for=\"myCheck\">Igual  </label><input type=\"checkbox\" id=\"normal" + "fecha" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionVarProyFecha', " + "'normal'" +")\">" + "</td>" +
+                                "<td>" + "<label for=\"myCheck\">Peor  </label><input type=\"checkbox\" id=\"peor" + "fecha" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionVarProyFecha', " + "'peor'" +")\">" + "</td>" +  
+                              "</tr>" +
+                              "<tr>" +
+                              "<td>" + "RRHH" + "</td>"+   
+                                "<td>" + "<label for=\"myCheck\">Mejor  </label><input type=\"checkbox\" id=\"mejor" + "rrhh" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionVarProyRRHH', " + "'mejor'" +")\">" + "</td>" +
+                                "<td>" + "<label for=\"myCheck\">Igual  </label><input type=\"checkbox\" id=\"normal" + "rrhh" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionVarProyRRHH', " + "'normal'" +")\">" + "</td>" +
+                                "<td>" + "<label for=\"myCheck\">Peor  </label><input type=\"checkbox\" id=\"peor" + "rrhh" + "\" onclick=\"variacionEstado(" + numero + ", 'peticionVarProyRRHH', " + "'peor'" +")\">" + "</td>" +  
+                              "</tr>" +
+                           "</tbody>" +
+                          "</table>");
+
+  // poner los checks
+  document.getElementById(variacionPresupuesto + "presupuesto").checked = true;
+  document.getElementById(variacionFecha + "fecha").checked = true;
+  document.getElementById(variacionRRHH + "rrhh").checked = true;
+  
 }
 
 function modificarEstadoTarea (numero, estado, i) {
@@ -150,4 +198,27 @@ function modificarEstadoTarea (numero, estado, i) {
   }
 
 
+}
+
+
+function variacionEstado (numero, elemento, valor) {
+  sessionStorage.setItem(elemento + numero, valor);
+  var casilla ="";
+  switch (elemento) {
+    case "peticionProyVarPresupuesto":
+      casilla = "presupuesto";
+      break;
+    case "peticionVarProyFecha":
+      casilla = "fecha";
+      break;
+    case "peticionVarProyRRHH":
+      casilla = "rrhh";
+      break;
+  }
+  console.log(casilla);
+  document.getElementById("mejor" + casilla).checked = false;
+  document.getElementById("normal" + casilla).checked = false;
+  document.getElementById("peor" + casilla).checked = false;
+
+  document.getElementById(valor + casilla).checked = true;
 }
