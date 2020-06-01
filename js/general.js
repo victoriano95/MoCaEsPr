@@ -7,6 +7,7 @@ Tareas pendientes para el cargo
 
 window.onload = function() {
   var usuario = sessionStorage.getItem("usuario");
+  var fase = sessionStorage.getItem("fasePortfolio");
   if (usuario != null) {
 	  $("#puestoID").append(usuario);
 

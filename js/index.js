@@ -27,7 +27,7 @@ function estadoDeLosProyectos () {
     var listaElementos = "";
     proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
     while (sessionStorage.getItem("evaluarBorrados" + numeroProyectos) != null) { // se ha borrado
-      numeroProyectos ++;console.log("coño");
+      numeroProyectos ++;
       var proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos, "creada");
     }
     while (proyecto != null) {
