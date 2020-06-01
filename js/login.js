@@ -27,7 +27,7 @@ function entrar() {
 
         } else { 
             alert("Parece que no existe ese usuario con esa contraseña!");
-           // document.getElementById("nombreID").value = "";
+            document.getElementById("nombreID").value = "";
             document.getElementById("passwordID").value = "";
         }
 
