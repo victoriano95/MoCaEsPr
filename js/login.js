@@ -8,22 +8,22 @@ function entrar() {
         if ((nombre == "Pepe" && contraseña == "1234") || (nombre == "Ana" && contraseña == "1234")) {  // Promotor
 
             sessionStorage.setItem("usuario", "promotor");
-            location.replace("index.html");
+            location.replace("dashboard.html");
 
         } else if (nombre == "Juan" && contraseña == "1234") { // Director/Rector
 
             sessionStorage.setItem("usuario", "director");
-            location.replace("index.html");
+            location.replace("dashboard.html");
 
         } else if (nombre == "Victoriano" && contraseña == "1234") {  // CIO
 
             sessionStorage.setItem("usuario", "cio");
-            location.replace("index.html");
+            location.replace("dashboard.html");
 
         } else if (nombre == "admin" && contraseña == "1234") {
 
             sessionStorage.setItem("usuario", "admin");
-            location.replace("index.html");
+            location.replace("dashboard.html");
 
         } else { 
             alert("Parece que no existe ese usuario con esa contraseña!");
