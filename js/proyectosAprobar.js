@@ -64,7 +64,7 @@ function aceptar (numero) {
   sessionStorage.setItem("aprobado", "si");
   message ("La propuesta ha sido aceptada");
   sessionStorage.setItem ("fasePortfolio", 4);
-  location.replace("index.html");
+  location.replace("dashboard.html");
 }
 
 function rechazar (numero) {
@@ -78,7 +78,7 @@ function rechazar (numero) {
   }
 
   message ("La propuesta ha sido rechazada");
-  //location.replace("index.html");
+  //location.replace("dashboard.html");
 }
 
 

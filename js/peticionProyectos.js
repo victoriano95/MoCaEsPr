@@ -32,7 +32,7 @@ function crearPeticion() {
 
         sessionStorage.setItem ("fasePortfolioAux", "yes");
 
-        location.replace("index.html");
+        location.replace("dashboard.html");
     } else {
         alert("Necesita completar todos los campos para la creación de este petición de proyecto");
     }

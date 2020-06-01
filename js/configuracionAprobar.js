@@ -13,7 +13,7 @@ function crearConfiguracion() {
 
     sessionStorage.setItem ("fasePortfolio", 2);
 
-    location.replace("index.html");
+    location.replace("dashboard.html");
 }
 
 function descartarConfiguracion () {
@@ -32,7 +32,7 @@ function descartarConfiguracion () {
     message("Se descara su configuración para la cartera de proyectos");
 
     // avisar al CIO
-    location.replace("index.html");
+    location.replace("dashboard.html");
 }
 
 

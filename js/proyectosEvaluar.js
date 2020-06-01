@@ -263,5 +263,5 @@ function intercambiarPuestos (numero1, numero2) {
 function enviarPropuesta () {
     sessionStorage.setItem("propuestaDeProyectosCreada", "si");
     // mensaje
-    location.replace("index.html");
+    location.replace("dashboard.html");
 }

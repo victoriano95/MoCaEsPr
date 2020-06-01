@@ -31,7 +31,7 @@ function crearConfiguracion() {
 
         sessionStorage.setItem("nombreDeLaCreacionDeLaConfiguracion", sessionStorage.getItem("usuarioName"));
 
-        location.replace("index.html");
+        location.replace("dashboard.html");
     } else {
         alert("Necesita completar todos los campos para crear la configuración");
     }
