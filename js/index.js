@@ -175,7 +175,24 @@ function cabeceraFase () {
     break;
   }
 
+  switch (sessionStorage.getItem("usuario")) {
+    case "promotor":
+      $("#cuerpoFaseID").append(mensajeFase [0] [fase - 1]);
+      break;
+    case "cio":
+      $("#cuerpoFaseID").append(mensajeFase [1] [fase - 1]);
+      break;
+    case "director":
+      $("#cuerpoFaseID").append(mensajeFase [2] [fase - 1]);
+      break;
+  }
+
 }
+
+
+var mensajeFase  = [["No tiene tareas en esta fase", "Redactar las propuestas de proyectos", "No tiene tareas en esta fase", "Actualizar la ejecución de sus proyectos", "No tiene tareas en esta fase"],  // Promotor
+                   ["Realizar la propuesta de configuración", "No tiene tareas en esta fase", "Proponer las prioridades de los proyectos", "No tiene tareas en esta fase", "No tiene tareas en esta fase"],  // CIO
+                   ["Evalaur la propuesta de configuración", "No tiene tareas en esta fase", "Aceptar la propuesta de proyectos", "No tiene tareas en esta fase", "Evaluar el éxito de los proyectos finalizados"]];  // Director
 
 
 function ultimafase () {
