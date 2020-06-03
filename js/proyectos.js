@@ -52,6 +52,7 @@ function load() {
                     "<td bgcolor=\"orange\">"+
                       //"<a class=\"btn btn-success btn-circle ml-1\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
                       "<a class=\"btn btn-success btn-circle ml-1\"  bgcolor=\"orange\" role=\"button\" onclick=\"message(" + numeroProyectos + ")\"><i class=\"fas fa-envelope-square text-white\"></i></a>" +
+                      "<a class=\"btn btn-success btn-circle ml-1\"  bgcolor=\"orange\" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-white\"></i></a>" +
                       //"<a class=\"btn btn-info btn-circle  bgcolor=\"orange\" ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\"><i class=\"fas fa-times text-white\"></i></a>" +
                     "</td>" +
                 "</tr>";
@@ -85,6 +86,8 @@ function load() {
 }
 
 function decline (numero) {
+ // sessionStorage.removeItem("estado" + numero);
+  sessionStorage.setItem("estado" + numero, "standBy");
   sessionStorage.removeItem("proyectoEnCurso" + numero);
   sessionStorage.removeItem("proyectoEnCurso" + numero +  "nombre");
   
@@ -93,9 +96,9 @@ function decline (numero) {
   sessionStorage.removeItem("proyectoEnCurso" + numero +  "finProyecto");
     
   sessionStorage.setItem("enProcesoBorrados" + numero, "borrado");
-
+/*
   // numero proyectos
-  var numeroProyectos = sessionStorage.getItem("confNumeroProyectos");
+    var numeroProyectos = sessionStorage.getItem("confNumeroProyectos");
     if (numeroProyectos == null) {
       sessionStorage.setItem("confNumeroProyectos", 1);
     } else {
@@ -122,7 +125,13 @@ function decline (numero) {
       sessionStorage.setItem("confNumeroRRHH", numeroRRHH);
       sessionStorage.removeItem("proyectoEnCurso" + numero +  "rrhh");
     }
+*/
+  location.replace("proyectos.html");
+}
 
+function accept (numero) {
+  console.log("hola");
+  sessionStorage.setItem("estado" + numero, "aceptado");
   location.replace("proyectos.html");
 }
 
@@ -135,7 +144,7 @@ function message (numero) {
     // sacar de quien es la propuesta de proyecto
     var nombreCreadorPropuesta = sessionStorage.getItem("proyectoEnCurso" + numero + "nombreCreador");
     var mensajeAntiguo = sessionStorage.getItem("mensaje" + nombreCreadorPropuesta);
-    if (mensajeAntiguo == null) ´{
+    if (mensajeAntiguo == null) {
       mensajeAntiguo = "";
     }
     sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + mensaje +"}");

@@ -10,6 +10,11 @@ function entrar() {
             sessionStorage.setItem("usuario", "promotor");
             location.replace("dashboard.html");
 
+        } if ((nombre == "Alex" && contraseña == "1234") || (nombre == "Fernando" && contraseña == "1234")) {  // project manager
+
+            sessionStorage.setItem("usuario", "project manager");
+            location.replace("dashboard.html");
+
         } else if (nombre == "Juan" && contraseña == "1234") { // Director/Rector
 
             sessionStorage.setItem("usuario", "director");
@@ -26,7 +31,7 @@ function entrar() {
             location.replace("dashboard.html");
 
         } else { 
-            alert("Parece que no existe ese usuario con esa contraseña!");
+            //alert("Parece que no existe ese usuario con esa contraseña!");
             document.getElementById("nombreID").value = "";
             document.getElementById("passwordID").value = "";
         }

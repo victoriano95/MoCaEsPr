@@ -1,8 +1,8 @@
 
 /*
-Mensajes cuando se aprueban/cancelan cosas
-Evaluar
-Tareas pendientes para el cargo
+Meter el director de gestión que complemente lo que hagan los promotores
+Que se vea la información con la que dispone cada promotor
+Más gente evaluando los proyectos (los de gestión)
 */
 
 window.onload = function() {
@@ -50,7 +50,21 @@ window.onload = function() {
       document.getElementById('configOptionApobarID').style.display = 'none';
       document.getElementById('exitoProyectoID').style.display = 'none';
 
-  	}else if (usuario == "admin") {
+  	} else if (usuario == "project manager") {  
+      /* 
+         [+]acaabar la creación de la petición de proyecto
+         []modificar la ejecución del proyecto
+         []evalaur el proyecto
+      */
+
+      document.getElementById('configOptionID').style.display = 'none';
+      document.getElementById('evaluarProyectoID').style.display = 'none';
+      document.getElementById('proyectosOptionID').style.display = 'none';
+      document.getElementById('aprobarProyectoID').style.display = 'none';
+      document.getElementById('configOptionApobarID').style.display = 'none';
+      document.getElementById('exitoProyectoID').style.display = 'none';
+
+    } else if (usuario == "admin") {
   		// lo puede hacer todo
   	}  
   } else {

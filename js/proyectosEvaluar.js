@@ -9,7 +9,8 @@ window.addEventListener("load",function(event) {
 
 
 
-function load () {	
+function load () {
+/*	
 	if (sessionStorage.getItem("aprobado") == "si") {
 		$("#dondeCuelgaID").append("<tr>" +
                     "<td><h1>La propuesta ya ha sido aceptada</h1></td>" +
@@ -68,7 +69,66 @@ function load () {
 			}
 		}
 	}
+    */
+    
+    var numeroProyectos = 0;
+    proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos +  "nombre");   // nombre por poner uno
+    var nohayparaEvaluar = 0;
+
+    while (proyecto != null) {
+        // como tendrán que ser los 3 botones de cada fila
+        var botonAceptar = "border border-info";
+        var textoAceptar = "black";
+        var botonBorrar = "border border-info";
+        var textoBorrar = "black";
+        var botonStandBy = "border border-info";
+        var textoStandBy = "black";
+        if (sessionStorage.getItem("estado" + numeroProyectos) == "borrado") {
+        botonBorrar = "btn-danger";
+            textoBorrar = "white";
+        } else if (sessionStorage.getItem("estado" + numeroProyectos) == "standBy") {
+            botonStandBy = "btn-warning";
+            textoStandBy = "white";
+        } else { // por defecto el proyecto se aprueba
+            sessionStorage.setItem("estado" + numeroProyectos, "aceptado");
+            botonAceptar = "btn-success";
+            textoAceptar = "white";
+        }
+
+        if (sessionStorage.getItem("peticionProy" + numeroProyectos) == "creada") {
+            nohayparaEvaluar = 1;
+            $("#bodyProyectsID").append("<tr> "+
+                "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
+                "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
+                "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "rrhh") + "</td>" +
+                "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
+                "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
+                "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
+                "<td><a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"up(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-arrow-up\"></i></a>" +
+                    "<a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"down(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-arrow-down\"></i></a>" + 
+                "</td>" +
+                "<td><a class=\"btn " + botonAceptar + " btn-circle ml-1  \" role=\"button\" onclick=\"accept(" + numeroProyectos + ")\"><i class=\"fas fa-check text-" + textoAceptar + "\"></i></a>" +
+                   "<a class=\"btn " + botonStandBy + " btn-circle ml-1\" role=\button\" onclick=\"standBy(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-minus text-" + textoStandBy + "\"></i></a>" +
+                    "<a class=\"btn " + botonBorrar +  " btn-circle ml-1\" role=\button\" onclick=\"decline(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-times text-" + textoBorrar + "\"></i></a>" +
+                "</td>" +
+                "<td></td>" +
+            "</tr>");
+        }
+
+        numeroProyectos ++;
+        proyecto = sessionStorage.getItem("peticionProy" + numeroProyectos +  "nombre");
+    }
+
+    if (nohayparaEvaluar == 0) { // no ha entrado ni una vez en meter elementos
+        $("#dondeCuelgaID").append("<tr>" +
+                "<td><h1>La propuesta ya ha sido aceptada</h1></td>" +
+           "</tr>");
+        const myNode = document.getElementById("dataTable");
+        myNode.innerHTML = '';
+    }
+    
 }
+
 
 function accept (numero) {
 	sessionStorage.setItem("estado" + numero, "aceptado"); 

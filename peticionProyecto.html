@@ -26,12 +26,14 @@
                </a>
                <hr class="sidebar-divider my-0">
                <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                  <li class="nav-item" role="presentation" id="dashboardOptionID"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                   <li class="nav-item" role="presentation" id="dashboardOptionID"><a class="nav-link active" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                   <li class="nav-item" role="presentation" id="proyectosOptionID"><a class="nav-link" href="proyectos.html"><i class="fas fa-table"></i><span>Proyectos</span></a></li>
                   <li class="nav-item" role="presentation" id="misProyectosOptionID"><a class="nav-link" href="misProyectos.html"><i class="fa fa-list-alt"></i><span>Mis proyectos</span></a></li>
                   <li class="nav-item" role="presentation" id="configOptionID"><a class="nav-link" href="configuracion.html"><i class="fas fa-window-maximize"></i><span>Configuración</span></a></li>
                   <li class="nav-item" role="presentation" id="configOptionApobarID"><a class="nav-link" href="configuracionAprobar.html"><i class="fas fa-window-maximize"></i><span>Aprobar configuración</span></a></li>
-                  <li class="nav-item" role="presentation" id="peticionProyectoID"><a class="nav-link active" href="peticionProyecto.html"><i class="fas fa-ad"></i><span>Petición proyecto</span></a></li>
+                  <li class="nav-item" role="presentation" id="peticionProyectoID"><a class="nav-link" href="peticionProyecto.html"><i class="fas fa-ad"></i><span>Petición proyecto</span></a></li>
+                  <li class="nav-item" role="presentation" id="peticionProyecto2ID"><a class="nav-link" href="peticionProyectoparte2.html"><i class="fas fa-ad"></i><span>Completar peticion de proyecto</span></a></li>
+                  <li class="nav-item" role="presentation" id="peticionProyecto3ID"><a class="nav-link" href="peticionProyectoparte3.html"><i class="fas fa-ad"></i><span>Enviar peticion de proyectos</span></a></li>
                   <!-- para el class fa: https://www.w3schools.com/icons/icons_reference.asp -->
                   <li class="nav-item" role="presentation" id="evaluarProyectoID"><a class="nav-link" href="proyectosEvaluar.html"><i class="fa fa-list-alt"></i><span>Evaluar proyecto</span></a></li>
                   <li class="nav-item" role="presentation" id="aprobarProyectoID"><a class="nav-link" href="proyectosAprobar.html"><i class="fa fa-list-alt"></i><span>Aprobar propuesta proyecto</span></a></li>
@@ -90,11 +92,24 @@
                <div style="width: 50%; margin: 0 auto;">
                   <div style="float:left" class="container-fluid">
                      <small class="form-text text-muted">Nombre del proyecto:<input type="text" id="nombreProyID"></small>
-                     <small class="form-text text-muted">Cuanto costará el proyecto (€):<input type="text" id="costeProyID"></small>
-                     <small class="form-text text-muted">Recursos humanos necearios (horas/año):<input type="text" id="rrhhProyID"></small>
+                    <!-- <small class="form-text text-muted">Cuanto costará el proyecto (€):<input type="text" id="costeProyID"></small> -->
+                    <!-- <small class="form-text text-muted">Recursos humanos necearios (horas/año):<input type="text" id="rrhhProyID"></small> -->
                      <small class="form-text text-muted">Que se pretende conseguir:<input type="text" id="conseguirProyID"></small>
-                     <small class="form-text text-muted">Inicio proyecto:&nbsp;<input type="date" id="inProyID"></small>
+                    <!-- <small class="form-text text-muted">Inicio proyecto:&nbsp;<input type="date" id="inProyID"></small>  -->
                      <small class="form-text text-muted">Fin proyecto:&nbsp;<input type="date" id="finProyID"></small>
+                     <small class="form-text text-muted">
+                     <div class="dropdown show">
+                        Progect manager: &nbsp;
+                           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="selectorManagerID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Alex
+                           </a>
+
+                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" onClick="manager('Alex')">Alex</a>
+                              <a class="dropdown-item" onClick="manager('Fernando')">Fernando</a>
+                           </div>
+                        </div>
+                     </small>
                      <div id="conjuntoTareasID">
                         <small class="form-text text-muted">Tarea 1: <input type="text" id="tarea0ID"></small>
                      </div>
