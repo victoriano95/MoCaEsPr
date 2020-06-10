@@ -10,8 +10,15 @@ function load() {
   var numeroProyectos = 0;
   var proyecto = sessionStorage.getItem("estado" + numeroProyectos);
 
+  var listaAcepatdos = "";
+  var listaStandBy = "";
+  var listaBorrado = "";
+  var lisatFinalizados = "";
+  var listaNoDecididos = "";
+
   while (proyecto != null) {
-    if (sessionStorage.getItem("peticionProy" + numeroProyectos + "nombreCreador") == sessionStorage.getItem("usuarioName") && sessionStorage.getItem("aprobado") == "si") {
+    if ((sessionStorage.getItem("peticionProy" + numeroProyectos + "nombreCreador") == sessionStorage.getItem("usuarioName") && sessionStorage.getItem("aprobado") == "si")  // el promotor
+      || (sessionStorage.getItem("peticionProy" + numeroProyectos +  "nombreManager") == sessionStorage.getItem("usuarioName") && sessionStorage.getItem("aprobado") == "si") ) {  // el proyect manager
           var estadoProyecto = sessionStorage.getItem("estado" + numeroProyectos);
           var icono;
           if (estadoProyecto == "borrado") {
@@ -31,7 +38,33 @@ function load() {
             botonModificacion = "<i class=\"fas fa-horizontal-rule text-dark\"></i>";
             botonModificacion = "<a class=\"btn btn-link\" > - <i class=\"fas fa-horizontal-rule text-dark\"></i></a>";
           }
+
+          var resultado = "<tr> "+
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "rrhh") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
+                    "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
+                    "<td>" + botonModificacion + "</td>" +
+                    "<td>"+ 
+                      icono +
+                    "</td>" +
+                    "<td></td>" +
+                "</tr>";
           
+          if (estadoProyecto == "borrado") {
+            listaBorrado += resultado;
+          } else if (estadoProyecto == "aceptado") {
+            listaAcepatdos += resultado;
+          } else if (estadoProyecto == "standBy") {
+            listaStandBy += resultado;
+          } else if(estadoProyecto == "finalizado") {
+            lisatFinalizados += resultado;
+          } else {
+            listaNoDecididos += resultado;
+          }
+            /*
             $("#bodyProyectsAcceptadosID").append("<tr> "+
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "nombre") + "</td>" +
                     "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
@@ -45,11 +78,19 @@ function load() {
                     "</td>" +
                     "<td></td>" +
                 "</tr>");
+            */
     }    
     
     numeroProyectos ++;
     proyecto = sessionStorage.getItem("estado" + numeroProyectos);
   }
+
+  $("#bodyProyectsAcceptadosID").append(lisatFinalizados);
+  $("#bodyProyectsAcceptadosID").append(listaAcepatdos);
+  $("#bodyProyectsAcceptadosID").append(listaStandBy);
+  $("#bodyProyectsAcceptadosID").append(listaBorrado);
+  $("#bodyProyectsAcceptadosID").append(listaNoDecididos);
+
 }
 
 

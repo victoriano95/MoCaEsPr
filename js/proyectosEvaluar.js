@@ -102,7 +102,7 @@ function load () {
                 "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "coste") + "</td>" +
                 "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "rrhh") + "</td>" +
                 "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "conseguir") + "</td>" +
-                "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
+                //"<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "inicioProyecto") + "</td>" +
                 "<td>" + sessionStorage.getItem("peticionProy" + numeroProyectos + "finProyecto") + "</td>" +
                 "<td><a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"up(" + numeroProyectos + ")\" id=\"bottonDeclinarID\"><i class=\"fas fa-arrow-up\"></i></a>" +
                     "<a class=\"btn btn-outline-dark btn-circle\" role=\button\" onclick=\"down(" + numeroProyectos + ")\" id=\"bottonStandByID\"><i class=\"fas fa-arrow-down\"></i></a>" + 
@@ -144,7 +144,7 @@ function accept (numero) {
     sessionStorage.setItem("proyectoEnCurso" + numeroPeticion +  "coste", sessionStorage.getItem("peticionProy" + numero + "coste"));
     sessionStorage.setItem("proyectoEnCurso" + numeroPeticion +  "rrhh", sessionStorage.getItem("peticionProy" + numero + "rrhh"));
     sessionStorage.setItem("proyectoEnCurso" + numeroPeticion +  "conseguir", sessionStorage.getItem("peticionProy" + numero + "conseguir"));
-    sessionStorage.setItem("proyectoEnCurso" + numeroPeticion +  "inicioProyecto", sessionStorage.getItem("peticionProy" + numero + "inicioProyecto"));
+    //sessionStorage.setItem("proyectoEnCurso" + numeroPeticion +  "inicioProyecto", sessionStorage.getItem("peticionProy" + numero + "inicioProyecto"));
     sessionStorage.setItem("proyectoEnCurso" + numeroPeticion +  "finProyecto", sessionStorage.getItem("peticionProy" + numero + "finProyecto"));
     sessionStorage.setItem("proyectoEnCurso" + numeroPeticion + "nombreCreador", sessionStorage.getItem("peticionProy" + numero + "nombreCreador"));
 

@@ -23,6 +23,8 @@ window.onload = function() {
       document.getElementById('aprobarProyectoID').style.display = 'none';
       document.getElementById('configOptionApobarID').style.display = 'none';
       document.getElementById('exitoProyectoID').style.display = 'none';
+      document.getElementById('peticionProyecto2ID').style.display = 'none';
+      document.getElementById('peticionProyecto3ID').style.display = 'none';
 
   	} else if (usuario == "director") {  
   		/* 
@@ -36,6 +38,8 @@ window.onload = function() {
     	document.getElementById('misProyectosOptionID').style.display = 'none';
       document.getElementById('configOptionID').style.display = 'none';
       document.getElementById('evaluarProyectoID').style.display = 'none';
+      document.getElementById('peticionProyecto2ID').style.display = 'none';
+      document.getElementById('peticionProyecto3ID').style.display = 'none';
 
   	} else if (usuario == "promotor") {  
   		/* 
@@ -49,11 +53,13 @@ window.onload = function() {
       document.getElementById('aprobarProyectoID').style.display = 'none';
       document.getElementById('configOptionApobarID').style.display = 'none';
       document.getElementById('exitoProyectoID').style.display = 'none';
+      document.getElementById('peticionProyecto2ID').style.display = 'none';
+      //document.getElementById('peticionProyecto3ID').style.display = 'none';
 
   	} else if (usuario == "project manager") {  
       /* 
          [+]acaabar la creación de la petición de proyecto
-         []modificar la ejecución del proyecto
+         [+]modificar la ejecución del proyecto
          []evalaur el proyecto
       */
 
@@ -62,7 +68,9 @@ window.onload = function() {
       document.getElementById('proyectosOptionID').style.display = 'none';
       document.getElementById('aprobarProyectoID').style.display = 'none';
       document.getElementById('configOptionApobarID').style.display = 'none';
-      document.getElementById('exitoProyectoID').style.display = 'none';
+      //document.getElementById('exitoProyectoID').style.display = 'none';
+      document.getElementById('peticionProyectoID').style.display = 'none';
+      document.getElementById('peticionProyecto3ID').style.display = 'none';
 
     } else if (usuario == "admin") {
   		// lo puede hacer todo

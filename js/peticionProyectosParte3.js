@@ -11,6 +11,7 @@ function load() {
 
     var numeroProyectos = 0;
     var proyecto = sessionStorage.getItem("estado" + numeroProyectos);
+    contador = 0;
 
     while (proyecto != null) {
       if (sessionStorage.getItem("peticionProy" + numeroProyectos + "nombreCreador") == sessionStorage.getItem("usuarioName") && sessionStorage.getItem("peticionProy" + numeroProyectos + "completarManager") == "Completado" &&
@@ -28,17 +29,17 @@ function load() {
                     "</td>" +
                     "<td></td>" +
                 "</tr>");
-      } else {
-       
-      }     
+        contador++;
+      }    
               
       numeroProyectos ++;
       proyecto = sessionStorage.getItem("estado" + numeroProyectos);
     }
 
-  } else {
+  } 
+  if (contador ==0) {
      $("#dondeCuelgaID").append("<tr>" +
-                    "<td><h1>La propuesta ya ha sido aceptada</h1></td>" +
+                    "<td><h1>No quedan proyectos para enviar</h1></td>" +
                 "</tr>");
       const myNode = document.getElementById("dataTable");
       myNode.innerHTML = '';

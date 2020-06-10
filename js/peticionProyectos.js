@@ -13,6 +13,11 @@ PROMOTOR
     aceptarlo/descartarlo
 */
 
+window.addEventListener("load",function(event) {
+    document.getElementById("infoPresupuestoID").innerHTML = "Presupuesto total para los proyectos: " + sessionStorage.getItem("conf" + 0 +  "importe") / 2;
+    document.getElementById("infoRRHHID").innerHTML = "Recursos humanos total para los proyectos: " + sessionStorage.getItem("conf" + 0 +  "rrhh") / 2;
+},false);
+
 var numeroPeticion = 0;
 var managerNombre = "Alex";
 

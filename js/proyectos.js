@@ -142,11 +142,12 @@ function message (numero) {
   if (mensaje != null || mensaje != "") {
     
     // sacar de quien es la propuesta de proyecto
-    var nombreCreadorPropuesta = sessionStorage.getItem("proyectoEnCurso" + numero + "nombreCreador");
+    var nombreCreadorPropuesta = sessionStorage.getItem("peticionProy" + numero +  "nombreCreador");
     var mensajeAntiguo = sessionStorage.getItem("mensaje" + nombreCreadorPropuesta);
     if (mensajeAntiguo == null) {
       mensajeAntiguo = "";
     }
+    console.log(mensajeAntiguo);
     sessionStorage.setItem("mensaje" + nombreCreadorPropuesta, mensajeAntiguo + "{" + sessionStorage.getItem("usuarioName") + "|"  + sessionStorage.getItem("usuario")  + "|" + mensaje +"}");
 
   }
